@@ -29,4 +29,32 @@ describe('button', () => {
     expect(svgEl.classes()).toContain('loading')
     expect(wrapper.attributes('disabled')).toBe('disabled')
   })
+
+  it('test disabled', async () => {
+    const wrapper = shallowMount(GButton, {
+      propsData: {
+        disabled: true
+      },
+      slots: {
+        default: 'i am button'
+      }
+    })
+    expect(wrapper.attributes('disabled')).toBe('disabled')
+  })
+
+  it('test button icon', async () => {
+    const wrapper = mount(GButton, {
+      components: {
+        GIcon
+      },
+      propsData: {
+        icon: 'setting'
+      },
+      slots: {
+        default: 'i am button'
+      }
+    })
+    const iconComponent = wrapper.findComponent({ name: 'GIcon' })
+    expect(iconComponent.props().name).toBe('setting')
+  })
 })
