@@ -57,4 +57,34 @@ describe('button', () => {
     const iconComponent = wrapper.findComponent({ name: 'GIcon' })
     expect(iconComponent.props().name).toBe('setting')
   })
+
+  it('test icon position', () => {
+    const wrapper = mount(GButton, {
+      components: {
+        GIcon
+      },
+      propsData: {
+        iconPosition: 'right',
+        icon: 'setting'
+      },
+      slots: {
+        default: 'i am button'
+      }
+    })
+    expect(wrapper.classes()).toContain('icon-right')
+  })
+
+  it('test button click', () => {
+    const onClick = jest.fn()
+    const wrapper = mount(GButton, {
+      slots: {
+        default: 'i am button'
+      },
+      listeners: {
+        click: onClick
+      }
+    })
+    wrapper.trigger('click')
+    expect(onClick).toHaveBeenCalled()
+  })
 })
