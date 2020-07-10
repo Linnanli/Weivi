@@ -76,7 +76,7 @@ describe('button', () => {
 
   it('test button click', () => {
     const onClick = jest.fn()
-    const wrapper = mount(GButton, {
+    const wrapper = shallowMount(GButton, {
       slots: {
         default: 'i am button'
       },
