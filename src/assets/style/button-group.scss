@@ -1,0 +1,21 @@
+@import "./var/button.scss";
+
+.g-button-group{
+  .g-button{
+    border-radius: 0;
+
+    &:first-of-type{
+      border-radius: $--border-radius 0 0 $--border-radius;
+    }
+    &:last-of-type{
+      border-radius: 0 $--border-radius $--border-radius 0;
+    }
+    &:not(:first-of-type){
+      margin-left: -1px;
+    }
+    &:hover{
+      position: relative;
+      z-index: 1;
+    }
+  }
+}
