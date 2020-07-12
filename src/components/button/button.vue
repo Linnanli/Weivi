@@ -1,13 +1,13 @@
 <template>
   <button class="g-button"
-          :class="{ [`icon-${iconPosition}`]: true }"
+          :class="{ [`g-button-icon--${iconPosition}`]: true }"
           :disabled="isDisabled"
           @click="handleClick">
     <g-icon v-if="loading"
-            class="loading"
+            class="g-button-loading"
             name="loading"/>
     <g-icon v-if="icon && !loading"
-            class="icon"
+            class="g-button-icon"
             :name="icon"/>
     <div class="content">
       <slot/>

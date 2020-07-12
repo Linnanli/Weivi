@@ -1,6 +1,8 @@
 @import "./var/button.scss";
 
-.g-button{
+$--button-prefix: g-button;
+
+.#{$--button-prefix}{
   font-size: $--font-size;
   height: $--button-height;
   padding: 0 1em;
@@ -30,11 +32,11 @@
     outline: none;
   }
 
-  .icon,.loading{
+  &-icon,&-loading{
     margin-right: 0.3em;
   }
 
-  .loading{
+  &-loading{
     animation: gbuttonloading 1s linear infinite;
     @keyframes gbuttonloading {
       from {
@@ -46,11 +48,11 @@
     }
   }
 
-  &.icon-right{
-    .content {
+  &-icon--right{
+    .#{$--button-prefix}-content {
       order: 1;
     }
-    .icon {
+    .#{$--button-prefix}-icon {
       order: 2;
       margin-left: 0.3em;
       margin-right: 0;
