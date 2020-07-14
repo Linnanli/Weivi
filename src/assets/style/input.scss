@@ -1,0 +1,72 @@
+@import "./var/input.scss";
+@import "./var/button.scss";
+
+$--input-prefix: g-input;
+
+.#{$--input-prefix} {
+    display: inline-block;
+    position: relative;
+
+    &__inner {
+        height: $--input-height;
+        border: 1px solid $--border-color;
+        border-radius: $--border-radius;
+        padding: 0 8px;
+        font-size: inherit;
+
+        &[disabled] {
+            background-color: $--button-disabled-bg;
+            border-color: $--button-border-disabled-color;
+            color: $--button-disabled-color;
+        }
+    }
+
+    &--suffix {
+        .#{$--input-prefix}__inner {
+            padding-right: 30px;
+        }
+    }
+
+    &--prefix {
+        .#{$--input-prefix}__inner {
+            padding-left: 30px;
+        }
+    }
+
+    &__suffix, &__prefix{
+        position: absolute;
+        top: 0;
+        height: 100%;
+        color: #C0C4CC;
+        pointer-events: none;
+
+        &:before{
+            content:'';
+            display:inline-block;
+            vertical-align:middle;
+            height:100%;
+        }
+    }
+
+    &__suffix{
+        right: 6px;
+    }
+
+    &__prefix{
+        left: 6px;
+    }
+
+    &__icon {
+        vertical-align: middle;
+        pointer-events: all;
+
+        &+&{
+            margin-left: 4px;
+        }
+    }
+
+    &__clear {
+        font-size: 14px;
+        cursor: pointer;
+    }
+}
