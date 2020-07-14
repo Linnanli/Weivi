@@ -20,6 +20,9 @@ $--button-prefix: g-button;
 
   &[disabled] {
     background-color: $--button-disabled-bg;
+    border-color: $--button-border-disabled-color;
+    color: $--button-disabled-color;
+    outline: none;
   }
 
   &:hover{
