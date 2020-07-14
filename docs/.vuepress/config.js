@@ -1,6 +1,7 @@
 module.exports = {
     title: 'Hello VuePress',
     description: 'Hello, my friend!',
+    plugins: ['demo-container'],
     head: [
         ['link', {
             rel: 'icon',
