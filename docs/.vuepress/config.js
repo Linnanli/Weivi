@@ -1,4 +1,7 @@
 const path = require('path')
+const webpack = require('webpack')
+
+const version = require('../../package.json').version
 
 module.exports = {
     title: 'Hello VuePress',
@@ -24,12 +27,18 @@ module.exports = {
       ],
       nav: [
         { text: 'Home', link: '/' },
-        { text: 'Guide', link: '/guide/' }
+        { text: '组件', link: '/guide/' }
       ]
     },
-    configureWebpack: (config, isServer) => {
+    chainWebpack: (config, isServer) => {
       if (!isServer) {
-        config.resolve.alias['@src'] = path.resolve(__dirname, '../../src')
+        config.resolve.alias.set('@src', path.resolve(__dirname, '../../src'))
+        config.plugin('DefineVersionENV')
+              .use(webpack.DefinePlugin, [
+                {
+                  'process.env.VUE_APP_VERSION': JSON.stringify(version)
+                }
+              ])
       }
     }
 }

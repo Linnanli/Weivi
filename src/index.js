@@ -18,6 +18,7 @@ const install = (Vue) => {
 }
 
 export default {
+  version: process.env.VUE_APP_VERSION,
   ...components,
   install
 }
