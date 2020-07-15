@@ -4,8 +4,8 @@ const webpack = require('webpack')
 const version = require('../../package.json').version
 
 module.exports = {
-    title: 'Hello VuePress',
-    description: 'Hello, my friend!',
+    title: 'weiv',
+    description: '这是一个vue组件库',
     plugins: ['demo-container', 'auto-sidebar'],
     head: [
         ['link', {
