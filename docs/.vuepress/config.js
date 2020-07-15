@@ -6,7 +6,7 @@ const version = require('../../package.json').version
 module.exports = {
     title: 'Hello VuePress',
     description: 'Hello, my friend!',
-    plugins: ['demo-container'],
+    plugins: ['demo-container', 'auto-sidebar'],
     head: [
         ['link', {
             rel: 'icon',
@@ -17,17 +17,9 @@ module.exports = {
     ga: '',
     evergreen: true,
     themeConfig: {
-      sidebarDepth: 2,
-      sidebar: [
-        {
-          title: 'Guide',
-          collapsable: false,
-          children: ['/guide/']
-        }
-      ],
       nav: [
-        { text: 'Home', link: '/' },
-        { text: '组件', link: '/guide/' }
+        { text: '首页', link: '/' },
+        { text: '组件', link: '/ui/' }
       ]
     },
     chainWebpack: (config, isServer) => {
