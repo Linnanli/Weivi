@@ -1,8 +1,19 @@
 <template>
   <div class="g-input"
-       :class="{ 'g-input--suffix': showSuffix }"
+       :class="{
+         'g-input--suffix': showSuffix,
+         'g-input--prefix': showPrevfix
+        }"
        @mouseenter="handleMouseenter"
        @mouseleave="handleMouseleave">
+    <!-- prefix -->
+    <div class="g-input__prefix" v-if="showPrevfix">
+      <slot name="prefix" v-if="$slots.prefix"/>
+      <g-icon class="g-input__icon"
+              :name="prefixIcon"
+              v-else-if="prefixIcon"/>
+    </div>
+    <!-- input -->
     <input class="g-input__inner"
            type="text"
            ref="input"
@@ -10,7 +21,12 @@
            :readonly="readonly"
            :disabled="disabled"
            @input="handleInput">
+    <!-- suffix -->
     <div class="g-input__suffix" v-if="showSuffix">
+      <slot name="suffix" v-if="$slots.suffix"/>
+      <g-icon class="g-input__icon"
+              :name="suffixIcon"
+              v-else-if="suffixIcon"/>
       <g-icon class="g-input__icon g-input__clear"
               name="clear"
               v-show="showClearButton"
@@ -26,6 +42,14 @@ export default {
     event: 'input'
   },
   props: {
+    suffixIcon: {
+      type: String,
+      default: ''
+    },
+    prefixIcon: {
+      type: String,
+      default: ''
+    },
     placeholder: {
       type: String,
       default: ''
@@ -54,7 +78,10 @@ export default {
   },
   computed: {
     showSuffix () {
-      return this.clearable
+      return this.clearable || this.suffixIcon || this.$slots.suffix
+    },
+    showPrevfix () {
+      return this.prefixIcon || this.$slots.prefix
     },
     showClearButton () {
       return this.clearable && this.value && this.isMouseenter
