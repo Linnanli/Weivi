@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
     title: 'Hello VuePress',
     description: 'Hello, my friend!',
@@ -24,5 +26,10 @@ module.exports = {
         { text: 'Home', link: '/' },
         { text: 'Guide', link: '/guide/' }
       ]
+    },
+    configureWebpack: (config, isServer) => {
+      if (!isServer) {
+        config.resolve.alias['@src'] = path.resolve(__dirname, '../../src')
+      }
     }
 }
