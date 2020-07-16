@@ -3,7 +3,7 @@ title: input 输入框
 autoGroup-1: Basic
 ---
 
-## Input
+## input 输入框
 
 input组件
 
