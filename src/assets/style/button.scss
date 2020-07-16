@@ -35,11 +35,11 @@ $--button-prefix: g-button;
     outline: none;
   }
 
-  &-icon,&-loading{
+  &__icon{
     margin-right: 0.3em;
   }
 
-  &-loading{
+  &__loading{
     animation: gbuttonloading 1s linear infinite;
     @keyframes gbuttonloading {
       from {
@@ -51,11 +51,11 @@ $--button-prefix: g-button;
     }
   }
 
-  &-icon--right{
-    .#{$--button-prefix}-content {
+  &__icon--right{
+    .#{$--button-prefix}__content {
       order: 1;
     }
-    .#{$--button-prefix}-icon {
+    .#{$--button-prefix}__icon {
       order: 2;
       margin-left: 0.3em;
       margin-right: 0;

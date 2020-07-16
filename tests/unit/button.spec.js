@@ -26,7 +26,7 @@ describe('button', () => {
       }
     })
     const svgEl = wrapper.find('svg')
-    expect(svgEl.classes()).toContain('g-button-loading')
+    expect(svgEl.classes()).toContain('g-button__loading')
     expect(wrapper.attributes('disabled')).toBe('disabled')
   })
 
@@ -71,7 +71,7 @@ describe('button', () => {
         default: 'i am button'
       }
     })
-    expect(wrapper.classes()).toContain('g-button-icon--right')
+    expect(wrapper.classes()).toContain('g-button__icon--right')
   })
 
   it('test button click', () => {
