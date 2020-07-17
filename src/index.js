@@ -1,13 +1,13 @@
-import GButton from './components/button'
-import GButtonGroup from './components/button-group'
-import GIcon from './components/icon'
-import GInput from './components/input'
+import WButton from './components/button'
+import WButtonGroup from './components/button-group'
+import WIcon from './components/icon'
+import WInput from './components/input'
 
 const components = {
-  GButton,
-  GButtonGroup,
-  GIcon,
-  GInput
+  WButton,
+  WButtonGroup,
+  WIcon,
+  WInput
 }
 
 const install = (Vue) => {

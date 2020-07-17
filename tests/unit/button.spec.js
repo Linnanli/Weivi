@@ -1,22 +1,22 @@
 import { shallowMount, mount } from '@vue/test-utils'
-import GButton from '@/components/button'
-import GIcon from '@/components/icon'
+import WButton from '@/components/button'
+import WIcon from '@/components/icon'
 
 describe('button', () => {
   it('test create', () => {
-    const wrapper = shallowMount(GButton, {
+    const wrapper = shallowMount(WButton, {
       slots: {
         default: 'i am button'
       }
     })
-    expect(wrapper.classes()).toContain('g-button')
+    expect(wrapper.classes()).toContain('w-button')
     expect(wrapper.text()).toBe('i am button')
   })
 
   it('test loading', async () => {
-    const wrapper = mount(GButton, {
+    const wrapper = mount(WButton, {
       components: {
-        GIcon
+        WIcon
       },
       propsData: {
         loading: true
@@ -26,12 +26,12 @@ describe('button', () => {
       }
     })
     const svgEl = wrapper.find('svg')
-    expect(svgEl.classes()).toContain('g-button__loading')
+    expect(svgEl.classes()).toContain('w-button__loading')
     expect(wrapper.attributes('disabled')).toBe('disabled')
   })
 
   it('test disabled', async () => {
-    const wrapper = shallowMount(GButton, {
+    const wrapper = shallowMount(WButton, {
       propsData: {
         disabled: true
       },
@@ -43,9 +43,9 @@ describe('button', () => {
   })
 
   it('test button icon', async () => {
-    const wrapper = mount(GButton, {
+    const wrapper = mount(WButton, {
       components: {
-        GIcon
+        WIcon
       },
       propsData: {
         icon: 'setting'
@@ -54,14 +54,14 @@ describe('button', () => {
         default: 'i am button'
       }
     })
-    const iconComponent = wrapper.findComponent({ name: 'GIcon' })
+    const iconComponent = wrapper.findComponent({ name: 'WIcon' })
     expect(iconComponent.props().name).toBe('setting')
   })
 
   it('test icon position', () => {
-    const wrapper = mount(GButton, {
+    const wrapper = mount(WButton, {
       components: {
-        GIcon
+        WIcon
       },
       propsData: {
         iconPosition: 'right',
@@ -71,12 +71,12 @@ describe('button', () => {
         default: 'i am button'
       }
     })
-    expect(wrapper.classes()).toContain('g-button__icon--right')
+    expect(wrapper.classes()).toContain('w-button__icon--right')
   })
 
   it('test button click', () => {
     const onClick = jest.fn()
-    const wrapper = shallowMount(GButton, {
+    const wrapper = shallowMount(WButton, {
       slots: {
         default: 'i am button'
       },

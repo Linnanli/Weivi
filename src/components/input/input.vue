@@ -1,20 +1,20 @@
 <template>
-  <div class="g-input"
+  <div class="w-input"
        :class="{
-         'g-input--suffix': showSuffix,
-         'g-input--prefix': showPrevfix
+         'w-input--suffix': showSuffix,
+         'w-input--prefix': showPrevfix
         }"
        @mouseenter="handleMouseenter"
        @mouseleave="handleMouseleave">
     <!-- prefix -->
-    <div class="g-input__prefix" v-if="showPrevfix">
+    <div class="w-input__prefix" v-if="showPrevfix">
       <slot name="prefix" v-if="$slots.prefix"/>
-      <g-icon class="g-input__icon"
+      <w-icon class="w-input__icon"
               :name="prefixIcon"
               v-else-if="prefixIcon"/>
     </div>
     <!-- input -->
-    <input class="g-input__inner"
+    <input class="w-input__inner"
            type="text"
            ref="input"
            :placeholder="placeholder"
@@ -22,12 +22,12 @@
            :disabled="disabled"
            @input="handleInput">
     <!-- suffix -->
-    <div class="g-input__suffix" v-if="showSuffix">
+    <div class="w-input__suffix" v-if="showSuffix">
       <slot name="suffix" v-if="$slots.suffix"/>
-      <g-icon class="g-input__icon"
+      <w-icon class="w-input__icon"
               :name="suffixIcon"
               v-else-if="suffixIcon"/>
-      <g-icon class="g-input__icon g-input__clear"
+      <w-icon class="w-input__icon w-input__clear"
               name="clear"
               v-show="showClearButton"
               @click.native="handleClear"/>
@@ -36,7 +36,7 @@
 </template>
 <script>
 export default {
-  name: 'GInput',
+  name: 'WInput',
   model: {
     props: 'value',
     event: 'input'

@@ -1,7 +1,7 @@
-import GInput from './input'
+import WInput from './input'
 
-GInput.install = (Vue) => {
-  Vue.component(GInput.name, GInput)
+WInput.install = (Vue) => {
+  Vue.component(WInput.name, WInput)
 }
 
-export default GInput
+export default WInput

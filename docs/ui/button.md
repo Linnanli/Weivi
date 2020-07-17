@@ -14,8 +14,8 @@ autoGroup-1: Basic
 ::: demo 此处放置代码示例的描述信息，支持 `Markdown` 语法，**描述信息只支持单行**
 ```html
 <template>
-  <g-button icon="setting" icon-position="right">button1</g-button>
-  <g-button icon="setting" icon-position="left" :loading="loading" @click="handleLoaidng">button2</g-button>
+  <w-button icon="setting" icon-position="right">button1</w-button>
+  <w-button icon="setting" icon-position="left" :loading="loading" @click="handleLoaidng">button2</w-button>
 </template>
 <script>
 export default {
@@ -41,11 +41,11 @@ export default {
 ::: demo 此处放置代码示例的描述信息，支持 `Markdown` 语法，**描述信息只支持单行**
 ```html
 <template>
-  <g-button-group>
-    <g-button icon="left">上一页</g-button>
-    <g-button>上一页</g-button>
-    <g-button icon="right" icon-position="right">下一页</g-button>
-  </g-button-group>
+  <w-button-group>
+    <w-button icon="left">上一页</w-button>
+    <w-button>上一页</w-button>
+    <w-button icon="right" icon-position="right">下一页</w-button>
+  </w-button-group>
 </template>
 ```
 :::

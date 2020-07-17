@@ -4,7 +4,7 @@ const webpack = require('webpack')
 const version = require('../../package.json').version
 
 module.exports = {
-    title: 'weiv',
+    title: 'Weivi',
     description: '这是一个vue组件库',
     plugins: ['demo-container', 'auto-sidebar'],
     head: [

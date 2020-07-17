@@ -1,7 +1,7 @@
-import GIcon from './icon'
+import WIcon from './icon'
 
-GIcon.install = (Vue) => {
-  Vue.component(GIcon.name, GIcon)
+WIcon.install = (Vue) => {
+  Vue.component(WIcon.name, WIcon)
 }
 
-export default GIcon
+export default WIcon

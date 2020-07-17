@@ -1,11 +1,11 @@
 /* eslint-disable no-return-assign */
 import { mount, createLocalVue } from '@vue/test-utils'
-import GInput from '@/components/input'
-import GIcon from '@/components/icon'
+import WInput from '@/components/input'
+import WIcon from '@/components/icon'
 
 const localVue = createLocalVue()
-localVue.use(GInput)
-localVue.use(GIcon)
+localVue.use(WInput)
+localVue.use(WIcon)
 
 describe('input component', () => {
   it('test create input', () => {
@@ -18,7 +18,7 @@ describe('input component', () => {
       },
       render () {
         return (
-          <g-input value={ this.value }
+          <w-input value={ this.value }
             on-input={ value => this.value = value }
             placeholder="请输入内容"/>
         )
@@ -26,9 +26,9 @@ describe('input component', () => {
     }, {
       localVue
     })
-    wrapper = wrapper.findComponent(GInput)
+    wrapper = wrapper.findComponent(WInput)
     const inputEle = wrapper.find('input')
-    expect(wrapper.classes()).toContain('g-input')
+    expect(wrapper.classes()).toContain('w-input')
     expect(inputEle.element.value).toBe(inputValue)
     expect(inputEle.attributes('placeholder')).toBe('请输入内容')
   })
@@ -37,13 +37,13 @@ describe('input component', () => {
     let wrapper = mount({
       render () {
         return (
-          <g-input disabled/>
+          <w-input disabled/>
         )
       }
     }, {
       localVue
     })
-    wrapper = wrapper.findComponent(GInput)
+    wrapper = wrapper.findComponent(WInput)
     const inputEle = wrapper.find('input')
     expect(inputEle.attributes('disabled')).toBe('disabled')
   })
@@ -57,7 +57,7 @@ describe('input component', () => {
       },
       render () {
         return (
-          <g-input value={this.value}
+          <w-input value={this.value}
             on-input={value => this.value = value}
             clearable/>
         )
@@ -65,8 +65,8 @@ describe('input component', () => {
     }, {
       localVue
     })
-    wrapper = wrapper.findComponent(GInput)
-    const clearButton = wrapper.find('.g-input__clear')
+    wrapper = wrapper.findComponent(WInput)
+    const clearButton = wrapper.find('.w-input__clear')
     await clearButton.trigger('click')
     const inputEle = wrapper.find('input')
     expect(inputEle.element.value).toBe('')
@@ -76,15 +76,15 @@ describe('input component', () => {
     let wrapper = mount({
       render () {
         return (
-          <g-input prefix-icon={'setting'} suffix-icon={'setting'}/>
+          <w-input prefix-icon={'setting'} suffix-icon={'setting'}/>
         )
       }
     }, {
       localVue
     })
-    wrapper = wrapper.findComponent(GInput)
-    const prefixIcon = wrapper.find('.g-input__prefix .g-input__icon')
-    const suffixIcon = wrapper.find('.g-input__suffix .g-input__icon')
+    wrapper = wrapper.findComponent(WInput)
+    const prefixIcon = wrapper.find('.w-input__prefix .w-input__icon')
+    const suffixIcon = wrapper.find('.w-input__suffix .w-input__icon')
     expect(prefixIcon.exists()).toBe(true)
     expect(suffixIcon.exists()).toBe(true)
   })
@@ -93,18 +93,18 @@ describe('input component', () => {
     let wrapper = mount({
       render () {
         return (
-          <g-input>
-            <g-icon class="g-input__icon" slot="prefix" name="loading"></g-icon>
-            <g-icon class="g-input__icon" slot="suffix" name="loading"></g-icon>
-          </g-input>
+          <w-input>
+            <w-icon class="w-input__icon" slot="prefix" name="loading"></w-icon>
+            <w-icon class="w-input__icon" slot="suffix" name="loading"></w-icon>
+          </w-input>
         )
       }
     }, {
       localVue
     })
-    wrapper = wrapper.findComponent(GInput)
-    const prefixIcon = wrapper.find('.g-input__prefix .g-input__icon')
-    const suffixIcon = wrapper.find('.g-input__suffix .g-input__icon')
+    wrapper = wrapper.findComponent(WInput)
+    const prefixIcon = wrapper.find('.w-input__prefix .w-input__icon')
+    const suffixIcon = wrapper.find('.w-input__suffix .w-input__icon')
     expect(prefixIcon.exists()).toBe(true)
     expect(suffixIcon.exists()).toBe(true)
   })

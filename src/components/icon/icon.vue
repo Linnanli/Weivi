@@ -1,11 +1,11 @@
 <template>
-  <svg class="g-icon">
+  <svg class="w-icon">
     <use :xlink:href="`#icon-${name}`"></use>
   </svg>
 </template>
 <script>
 export default {
-  name: 'GIcon',
+  name: 'WIcon',
   props: {
     name: {
       type: String,
@@ -15,7 +15,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.g-icon{
+.w-icon{
   width: 1em;
   height: 1em;
 }

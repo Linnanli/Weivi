@@ -1,22 +1,22 @@
 <template>
-  <button class="g-button"
-          :class="{ 'g-button__icon--right': iconPosition === 'right' }"
+  <button class="w-button"
+          :class="{ 'w-button__icon--right': iconPosition === 'right' }"
           :disabled="isDisabled"
           @click="handleClick">
-    <g-icon v-if="loading"
-            class="g-button__icon g-button__loading"
+    <w-icon v-if="loading"
+            class="w-button__icon w-button__loading"
             name="loading"/>
-    <g-icon v-if="icon && !loading"
-            class="g-button__icon"
+    <w-icon v-if="icon && !loading"
+            class="w-button__icon"
             :name="icon"/>
-    <div class="g-button__content">
+    <div class="w-button__content">
       <slot/>
     </div>
   </button>
 </template>
 <script>
 export default {
-  name: 'GButton',
+  name: 'WButton',
   props: {
     disabled: {
       type: Boolean,

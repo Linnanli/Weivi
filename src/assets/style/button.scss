@@ -1,6 +1,6 @@
 @import "./var/button.scss";
 
-$--button-prefix: g-button;
+$--button-prefix: w-button;
 
 .#{$--button-prefix}{
   font-size: $--font-size;
@@ -14,7 +14,7 @@ $--button-prefix: g-button;
   align-items: center;
   vertical-align: middle;
 
-  &+.g-button{
+  &+.w-button{
     margin-left: 0.4em;
   }
 
@@ -40,8 +40,8 @@ $--button-prefix: g-button;
   }
 
   &__loading{
-    animation: gbuttonloading 1s linear infinite;
-    @keyframes gbuttonloading {
+    animation: WButtonloading 1s linear infinite;
+    @keyframes WButtonloading {
       from {
         transform: rotate(0);
       }

@@ -1,7 +1,7 @@
-import GButton from './button'
+import WButton from './button'
 
-GButton.install = (Vue) => {
-  Vue.component(GButton.name, GButton)
+WButton.install = (Vue) => {
+  Vue.component(WButton.name, WButton)
 }
 
-export default GButton
+export default WButton

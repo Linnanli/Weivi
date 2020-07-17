@@ -1,7 +1,7 @@
-import GButtonGroup from './button-group'
+import WButtonGroup from './button-group'
 
-GButtonGroup.install = (Vue) => {
-  Vue.component(GButtonGroup.name, GButtonGroup)
+WButtonGroup.install = (Vue) => {
+  Vue.component(WButtonGroup.name, WButtonGroup)
 }
 
-export default GButtonGroup
+export default WButtonGroup

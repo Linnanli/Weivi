@@ -12,7 +12,7 @@ input组件
 ::: demo
 ```html
 <template>
-  <g-input v-model="value" placeholder="请输入"/>
+  <w-input v-model="value" placeholder="请输入"/>
 </template>
 <script>
 export default {
@@ -31,7 +31,7 @@ export default {
 ::: demo
 ```html
 <template>
-  <g-input v-model="value" placeholder="请输入" disabled/>
+  <w-input v-model="value" placeholder="请输入" disabled/>
 </template>
 <script>
 export default {
@@ -50,7 +50,7 @@ export default {
 ::: demo
 ```html
 <template>
-  <g-input v-model="value" placeholder="请输入" clearable/>
+  <w-input v-model="value" placeholder="请输入" clearable/>
 </template>
 <script>
 export default {
@@ -72,24 +72,24 @@ export default {
   <div class="input-demo-block">属性定义icon:</div>
   <div class="input-demo-block">
     前缀icon：
-    <g-input v-model="value" prefix-icon="setting" placeholder="请输入"/>
+    <w-input v-model="value" prefix-icon="setting" placeholder="请输入"/>
   </div>
   <div class="input-demo-block">
     后缀icon：
-    <g-input v-model="value1" suffix-icon="setting" placeholder="请输入"/>
+    <w-input v-model="value1" suffix-icon="setting" placeholder="请输入"/>
   </div>
   <div class="input-demo-block">slot定义icon:</div>
   <div class="input-demo-block">
     前缀icon：
-    <g-input v-model="value2" placeholder="请输入">
-      <g-icon class="g-input__icon" slot="prefix" name="loading"/>
-    </g-input>
+    <w-input v-model="value2" placeholder="请输入">
+      <w-icon class="w-input__icon" slot="prefix" name="loading"/>
+    </w-input>
   </div>
   <div class="input-demo-block">
     后缀icon：
-    <g-input v-model="value3" placeholder="请输入">
-      <g-icon class="g-input__icon" slot="suffix" name="loading"/>
-    </g-input>
+    <w-input v-model="value3" placeholder="请输入">
+      <w-icon class="w-input__icon" slot="suffix" name="loading"/>
+    </w-input>
   </div>
 </template>
 <script>
