@@ -48,7 +48,7 @@ describe('input component', () => {
     expect(inputEle.attributes('disabled')).toBe('disabled')
   })
 
-  it('test clearable', async () => {
+  it('test clearable', () => {
     let wrapper = mount({
       data () {
         return {
@@ -67,7 +67,7 @@ describe('input component', () => {
     })
     wrapper = wrapper.findComponent(WInput)
     const clearButton = wrapper.find('.w-input__clear')
-    await clearButton.trigger('click')
+    clearButton.trigger('click')
     const inputEle = wrapper.find('input')
     expect(inputEle.element.value).toBe('')
   })
@@ -107,5 +107,26 @@ describe('input component', () => {
     const suffixIcon = wrapper.find('.w-input__suffix .w-input__icon')
     expect(prefixIcon.exists()).toBe(true)
     expect(suffixIcon.exists()).toBe(true)
+  })
+
+  it('test input event', () => {
+    const onBlur = jest.fn()
+    const onFocus = jest.fn()
+
+    let wrapper = mount({
+      render () {
+        return (
+          <w-input on-blur={onBlur} on-focus={onFocus}/>
+        )
+      }
+    }, {
+      localVue
+    })
+    wrapper = wrapper.findComponent(WInput)
+    const inputEle = wrapper.find('input')
+    inputEle.trigger('blur')
+    inputEle.trigger('focus')
+    expect(onBlur).toHaveBeenCalled()
+    expect(onFocus).toHaveBeenCalled()
   })
 })
