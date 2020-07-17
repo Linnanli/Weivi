@@ -72,18 +72,40 @@ describe('input component', () => {
     expect(inputEle.element.value).toBe('')
   })
 
-  it('test prefixIcon', async () => {
+  it('test prefixIcon and suffixIcon', async () => {
     let wrapper = mount({
       render () {
         return (
-          <g-input prefix-icon={'setting'} />
+          <g-input prefix-icon={'setting'} suffix-icon={'setting'}/>
         )
       }
     }, {
       localVue
     })
     wrapper = wrapper.findComponent(GInput)
-    const GIconComponent = wrapper.find('.g-input__prefix .g-input__icon')
-    expect(GIconComponent.exists()).toBe(true)
+    const prefixIcon = wrapper.find('.g-input__prefix .g-input__icon')
+    const suffixIcon = wrapper.find('.g-input__suffix .g-input__icon')
+    expect(prefixIcon.exists()).toBe(true)
+    expect(suffixIcon.exists()).toBe(true)
+  })
+
+  it('test icon slot', () => {
+    let wrapper = mount({
+      render () {
+        return (
+          <g-input>
+            <g-icon class="g-input__icon" slot="prefix" name="loading"></g-icon>
+            <g-icon class="g-input__icon" slot="suffix" name="loading"></g-icon>
+          </g-input>
+        )
+      }
+    }, {
+      localVue
+    })
+    wrapper = wrapper.findComponent(GInput)
+    const prefixIcon = wrapper.find('.g-input__prefix .g-input__icon')
+    const suffixIcon = wrapper.find('.g-input__suffix .g-input__icon')
+    expect(prefixIcon.exists()).toBe(true)
+    expect(suffixIcon.exists()).toBe(true)
   })
 })
