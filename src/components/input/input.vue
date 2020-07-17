@@ -20,7 +20,9 @@
            :placeholder="placeholder"
            :readonly="readonly"
            :disabled="disabled"
-           @input="handleInput">
+           @input="handleInput"
+           @blur="handleBlur"
+           @focus="handleFocus">
     <!-- suffix -->
     <div class="w-input__suffix" v-if="showSuffix">
       <slot name="suffix" v-if="$slots.suffix"/>
@@ -107,6 +109,12 @@ export default {
     },
     handleMouseleave () {
       this.isMouseenter = false
+    },
+    handleBlur (event) {
+      this.$emit('blur', event)
+    },
+    handleFocus () {
+      this.$emit('focus', event)
     }
   }
 }
