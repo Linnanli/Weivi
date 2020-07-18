@@ -17,6 +17,7 @@
     <input class="w-input__inner"
            type="text"
            ref="input"
+           :value="value"
            :placeholder="placeholder"
            :readonly="readonly"
            :disabled="disabled"
@@ -39,10 +40,6 @@
 <script>
 export default {
   name: 'WInput',
-  model: {
-    props: 'value',
-    event: 'input'
-  },
   props: {
     suffixIcon: {
       type: String,
@@ -89,20 +86,16 @@ export default {
       return this.clearable && this.value && this.isMouseenter
     }
   },
-  mounted () {
-    this.inputEle = this.$refs.input
-    this.setInputValue(this.value)
-  },
   methods: {
     setInputValue (value) {
-      this.inputEle.value = value
+      this.$refs.input.value = value
     },
     handleClear () {
       this.setInputValue('')
       this.handleInput()
     },
     handleInput () {
-      this.$emit('input', this.inputEle.value)
+      this.$emit('input', this.$refs.input.value)
     },
     handleMouseenter () {
       this.isMouseenter = true
