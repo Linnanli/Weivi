@@ -1,6 +1,7 @@
 ---
 title: input 输入框
 autoGroup-1: Basic
+sidebarDepth: 0
 ---
 
 ## input 输入框

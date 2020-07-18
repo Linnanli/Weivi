@@ -17,6 +17,7 @@ module.exports = {
     ga: '',
     evergreen: true,
     themeConfig: {
+      sidebarDepth: 0,
       nav: [
         { text: '首页', link: '/' },
         { text: '组件', link: '/ui/' }

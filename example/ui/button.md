@@ -1,6 +1,7 @@
 ---
 title: button 按钮
 autoGroup-1: Basic
+sidebarDepth: 0
 ---
 
 # Button
