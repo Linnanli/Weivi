@@ -1,9 +1,6 @@
 <template>
   <div class="w-col"
-       :class="{
-         [`w-col-${span}`]: span,
-         [`w-col-offset-${offset}`]: offset
-        }"
+       :class="colClass"
        :style="gutterStyle">
     <slot/>
   </div>
@@ -27,6 +24,30 @@ export default {
         const val = Number(value)
         return !isNaN(val) && val >= 1 && val <= 24
       }
+    },
+    xs: {
+      type: Object,
+      default () {
+        return {}
+      }
+    },
+    sm: {
+      type: Object,
+      default () {
+        return {}
+      }
+    },
+    md: {
+      type: Object,
+      default () {
+        return {}
+      }
+    },
+    lg: {
+      type: Object,
+      default () {
+        return {}
+      }
     }
   },
   computed: {
@@ -37,6 +58,27 @@ export default {
         paddingLeft: padding,
         paddingRight: padding
       }
+    },
+    colClass () {
+      return {
+        [`w-col-${this.span}`]: this.span,
+        [`w-col-offset-${this.offset}`]: this.offset,
+        ...this.getMediaQueryClass()
+      }
+    }
+  },
+  methods: {
+    getMediaQueryClass () {
+      const classCollection = {}
+      for (const key of ['xs', 'sm', 'md', 'lg']) {
+        if (this[key].span) {
+          classCollection[`w-col-${key}-${this[key].span}`] = true
+        }
+        if (this[key].offset) {
+          classCollection[`w-col-${key}-offset-${this[key].offset}`] = true
+        }
+      }
+      return classCollection
     }
   }
 }

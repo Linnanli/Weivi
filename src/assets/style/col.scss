@@ -1,12 +1,9 @@
 $--col-prefix: w-col;
 
-.w-col {
-    float: left;
-    box-sizing: border-box;
-
+@mixin grid() {
     @for $i from 1 through 24 {
-
         $grid: $i / 24 * 100%;
+
         &#{&}-#{$i}{
             width: $grid;
         }
@@ -15,4 +12,55 @@ $--col-prefix: w-col;
             margin-left: $grid;
         }
     }
+}
+
+@mixin media-query-grid($screen-size-prefix, $min-width, $max-width) {
+    @for $i from 1 through 24 {
+        $grid: $i / 24 * 100%;
+
+        &#{&}-#{$screen-size-prefix}-#{$i}{
+            
+            @if $max-width and $min-width {
+                @media (min-width: $min-width) and (max-width: $max-width) {
+                    width: $grid;
+                }
+            } @else if $max-width {
+                @media (max-width: $max-width) {
+                    width: $grid;
+                }
+            }  @else if $min-width {
+                @media (min-width: $min-width) {
+                    width: $grid;
+                }
+            }
+            
+        }
+
+        &#{&}-#{$screen-size-prefix}-offset-#{$i}{
+            @if $max-width and $min-width {
+                @media (min-width: $min-width) and (max-width: $max-width) {
+                    margin-left: $grid;
+                }
+            } @else if $max-width {
+                @media (max-width: $max-width) {
+                    margin-left: $grid;
+                }
+            }  @else if $min-width {
+                @media (min-width: $min-width) {
+                    margin-left: $grid;
+                }
+            }
+        }
+    }
+}
+
+.w-col {
+    float: left;
+    box-sizing: border-box;
+
+    @include grid;
+    @include media-query-grid($screen-size-prefix: xs, $min-width: null, $max-width: 768px);
+    @include media-query-grid($screen-size-prefix: sm, $min-width: 768px, $max-width: 992px);
+    @include media-query-grid($screen-size-prefix: md, $min-width: 992px, $max-width: 1200px);
+    @include media-query-grid($screen-size-prefix: lg, $min-width: 1200px, $max-width: null);
 }
