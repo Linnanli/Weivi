@@ -88,21 +88,53 @@ sidebarDepth: 0
     </w-row>
   </div>
 </template>
-<script>
-  export default {
-    data() {
-      return {
-        value: 10
-      }
-    }
-  }
-</script>
 <style>
   .grid-demo-2 .grid-content {
     background-color: #e5e9f2;
     text-align: center;
     height: 36px;
     line-height: 36px;
+  }
+</style>
+```
+:::
+
+### Grid 偏移
+
+::: demo
+```html
+<template>
+  <div class="grid-demo-3">
+    <w-row :gutter="20">
+      <w-col :span="8">
+        <div class="grid-content">col-8</div>
+      </w-col>
+      <w-col :span="8" :offset="8">
+        <div class="grid-content">col-8 offset-8</div>
+      </w-col>
+    </w-row>
+    <w-row :gutter="20">
+      <w-col :span="6">
+        <div class="grid-content">col-6</div>
+      </w-col>
+      <w-col :span="6">
+        <div class="grid-content">col-6</div>
+      </w-col>
+      <w-col :span="6" :offset="6">
+        <div class="grid-content">col-6 offset-6</div>
+      </w-col>
+    </w-row>
+  </div>
+</template>
+<style>
+  .grid-demo-3 .grid-content {
+    background-color: #e5e9f2;
+    text-align: center;
+    height: 36px;
+    line-height: 36px;
+  }
+  .grid-demo-3 .w-row {
+    margin-bottom: 20px;
   }
 </style>
 ```
