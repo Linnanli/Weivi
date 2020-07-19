@@ -2,12 +2,16 @@ import WButton from './components/button'
 import WButtonGroup from './components/button-group'
 import WIcon from './components/icon'
 import WInput from './components/input'
+import WRow from './components/row'
+import WCol from './components/col'
 
 const components = {
   WButton,
   WButtonGroup,
   WIcon,
-  WInput
+  WInput,
+  WRow,
+  WCol
 }
 
 const install = (Vue) => {

@@ -1,0 +1,12 @@
+$--col-prefix: w-col;
+
+.w-col {
+    float: left;
+    box-sizing: border-box;
+
+    @for $grid from 1 through 24 {
+        &#{&}--#{$grid}{
+            width: #{$grid / 24 * 100}#{'%'};
+        }
+    }
+}

@@ -1,0 +1,7 @@
+@mixin util-clearfix {
+    clear: both;
+    &:before,&:after{
+        content: '';
+        display: table;
+    }
+}
