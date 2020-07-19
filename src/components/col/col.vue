@@ -1,6 +1,9 @@
 <template>
   <div class="w-col"
-       :class="`w-col--${span}`"
+       :class="{
+         [`w-col-${span}`]: span,
+         [`w-col-offset-${offset}`]: offset
+        }"
        :style="gutterStyle">
     <slot/>
   </div>
@@ -13,6 +16,13 @@ export default {
     span: {
       type: [String, Number],
       default: '24',
+      validator (value) {
+        const val = Number(value)
+        return !isNaN(val) && val >= 1 && val <= 24
+      }
+    },
+    offset: {
+      type: [String, Number],
       validator (value) {
         const val = Number(value)
         return !isNaN(val) && val >= 1 && val <= 24

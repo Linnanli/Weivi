@@ -4,9 +4,15 @@ $--col-prefix: w-col;
     float: left;
     box-sizing: border-box;
 
-    @for $grid from 1 through 24 {
-        &#{&}--#{$grid}{
-            width: #{$grid / 24 * 100}#{'%'};
+    @for $i from 1 through 24 {
+
+        $grid: #{$i / 24 * 100}#{'%'};
+        &#{&}-#{$i}{
+            width: $grid;
+        }
+
+        &#{&}-offset-#{$i}{
+            margin-left: $grid;
         }
     }
 }
