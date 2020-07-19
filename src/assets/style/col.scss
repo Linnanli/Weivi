@@ -6,7 +6,7 @@ $--col-prefix: w-col;
 
     @for $i from 1 through 24 {
 
-        $grid: #{$i / 24 * 100}#{'%'};
+        $grid: $i / 24 * 100%;
         &#{&}-#{$i}{
             width: $grid;
         }
