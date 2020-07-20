@@ -52,7 +52,7 @@ export default {
   },
   computed: {
     gutterStyle () {
-      if (!this.row.gutter) {}
+      if (!this.row || !this.row.gutter) return {}
       const padding = `${this.row.gutter / 2}px`
       return {
         paddingLeft: padding,
