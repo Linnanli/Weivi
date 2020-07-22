@@ -4,6 +4,11 @@ import WIcon from './components/icon'
 import WInput from './components/input'
 import WRow from './components/row'
 import WCol from './components/col'
+import WLayout from './components/layout'
+import WHeader from './components/header'
+import WFooter from './components/footer'
+import WMain from './components/main'
+import WAside from './components/aside'
 
 const components = {
   WButton,
@@ -11,7 +16,12 @@ const components = {
   WIcon,
   WInput,
   WRow,
-  WCol
+  WCol,
+  WLayout,
+  WHeader,
+  WFooter,
+  WMain,
+  WAside
 }
 
 const install = (Vue) => {

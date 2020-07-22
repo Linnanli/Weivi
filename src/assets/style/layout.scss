@@ -1,0 +1,9 @@
+.w-layout {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+
+    &.is-vertical{
+        flex-direction: column;
+    }
+}
