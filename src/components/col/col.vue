@@ -8,7 +8,11 @@
 <script>
 export default {
   name: 'WCol',
-  inject: ['row'],
+  inject: {
+    row: {
+      default: null
+    }
+  },
   props: {
     span: {
       type: [String, Number],
