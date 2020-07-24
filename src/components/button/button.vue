@@ -17,7 +17,19 @@
 <script>
 export default {
   name: 'WButton',
+  inject: {
+    buttonGroupInstance: {
+      default: null
+    },
+    buttonGroupClick: {
+      default: null
+    }
+  },
   props: {
+    buttonKey: {
+      type: String,
+      default: ''
+    },
     disabled: {
       type: Boolean,
       default: false
@@ -46,6 +58,16 @@ export default {
   methods: {
     handleClick (e) {
       this.$emit('click', e)
+      if (this.buttonGroupClick) {
+        this.buttonGroupClick(this.buttonKey || this.getButtonIndex())
+      }
+    },
+    getButtonIndex () {
+      const vnodes = this.buttonGroupInstance.$slots.default
+      for (let i = 0; i < vnodes.length; i++) {
+        const vnode = vnodes[i]
+        if (vnode === this.$vnode) return i
+      }
     }
   }
 }

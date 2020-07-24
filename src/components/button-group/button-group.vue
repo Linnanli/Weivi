@@ -5,6 +5,14 @@
 </template>
 <script>
 export default {
-  name: 'WButtonGroup'
+  name: 'WButtonGroup',
+  provide () {
+    return {
+      buttonGroupInstance: this,
+      buttonGroupClick: (key) => {
+        this.$emit('select', key)
+      }
+    }
+  }
 }
 </script>
