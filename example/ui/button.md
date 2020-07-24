@@ -39,14 +39,23 @@ export default {
 
 以按钮组的形式展示按钮，是类似操作的按钮集合
 
-::: demo 此处放置代码示例的描述信息，支持 `Markdown` 语法，**描述信息只支持单行**
+::: demo 
 ```html
 <template>
-  <w-button-group>
-    <w-button icon="left">上一页</w-button>
-    <w-button>上一页</w-button>
-    <w-button icon="right" icon-position="right">下一页</w-button>
+  <w-button-group @select="handleSelect">
+    <w-button icon="left" button-key="prev">上一页</w-button>
+    <w-button button-key="center">中间</w-button>
+    <w-button icon="right" button-key="next" icon-position="right">下一页</w-button>
   </w-button-group>
 </template>
+<script>
+ export default {
+   methods: {
+     handleSelect(key) {
+       alert(`button key: ${key}`)
+     }
+   }
+ }
+</script>
 ```
 :::
