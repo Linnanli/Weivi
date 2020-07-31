@@ -1,27 +1,32 @@
-import WButton from './components/button'
-import WButtonGroup from './components/button-group'
-import WIcon from './components/icon'
-import WInput from './components/input'
-import WRow from './components/row'
-import WCol from './components/col'
-import WLayout from './components/layout'
-import WHeader from './components/header'
-import WFooter from './components/footer'
-import WMain from './components/main'
-import WAside from './components/aside'
+import Button from './components/button'
+import ButtonGroup from './components/button-group'
+import Icon from './components/icon'
+import Input from './components/input'
+import Row from './components/row'
+import Col from './components/col'
+import Layout from './components/layout'
+import Header from './components/header'
+import Footer from './components/footer'
+import Main from './components/main'
+import Aside from './components/aside'
+import Message from './components/message'
+
+const services = {
+  Message
+}
 
 const components = {
-  WButton,
-  WButtonGroup,
-  WIcon,
-  WInput,
-  WRow,
-  WCol,
-  WLayout,
-  WHeader,
-  WFooter,
-  WMain,
-  WAside
+  Button,
+  ButtonGroup,
+  Icon,
+  Input,
+  Row,
+  Col,
+  Layout,
+  Header,
+  Footer,
+  Main,
+  Aside
 }
 
 const install = (Vue) => {
@@ -29,10 +34,15 @@ const install = (Vue) => {
     const component = components[key]
     Vue.component(component.name, component)
   }
+  for (const key in services) {
+    const service = services[key]
+    Vue.use(service)
+  }
 }
 
 export default {
   version: process.env.VUE_APP_VERSION,
   ...components,
+  ...services,
   install
 }
