@@ -40,7 +40,7 @@ $--input-prefix: w-input;
         color: #C0C4CC;
         pointer-events: none;
 
-        @include util-middle
+        @include util-middle;
     }
 
     &__suffix{
