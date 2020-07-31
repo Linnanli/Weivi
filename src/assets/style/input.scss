@@ -40,12 +40,7 @@ $--input-prefix: w-input;
         color: #C0C4CC;
         pointer-events: none;
 
-        &:before{
-            content:'';
-            display:inline-block;
-            vertical-align:middle;
-            height:100%;
-        }
+        @include util-middle
     }
 
     &__suffix{

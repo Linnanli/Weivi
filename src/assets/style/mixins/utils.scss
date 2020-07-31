@@ -5,3 +5,12 @@
         clear: both;
     }
 }
+
+@mixin util-middle {
+    &:before{
+        content:'';
+        display:inline-block;
+        vertical-align:middle;
+        height:100%;
+    }
+}
