@@ -1,3 +1,22 @@
+$message_type_maps: (
+    success: (
+        bgColor: #f0f9eb,
+        borderColor: #e1f3d8
+    ),
+    warning: (
+        bgColor: #fdf6ec,
+        borderColor: #faecd8
+    ),
+    error: (
+        bgColor: #fef0f0,
+        borderColor: #fde2e2
+    ),
+    info: (
+        bgColor: #ebeef5,
+        borderColor: #edf2fc
+    )
+);
+
 .w-message{
     background-color: white;
     position: fixed;
@@ -19,14 +38,11 @@
         transform: translate(-50%, -100%);
     }
 
-    &--success{
-       background-color: #f0f9eb;
-       border-color: #e1f3d8;
-    }
-
-    &--warning{
-        background-color: #fdf6ec;
-        border-color: #faecd8;
+    @each $type, $value in $message_type_maps {
+        &--#{$type}{
+            background-color: map-get($value, bgColor);
+            border-color: map-get($value, borderColor);
+        }
     }
 
     &__content{

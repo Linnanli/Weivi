@@ -3,6 +3,18 @@ import message from './message'
 let MessageConstructor = null
 
 const instances = {}
+let globalOptions = {}
+
+function mergeOptions (options) {
+  for (const key in globalOptions) {
+    if (~['message', 'visible', 'type'].indexOf(key)) {
+      delete globalOptions[key]
+    }
+    if (!(key in options)) {
+      options[key] = globalOptions[key]
+    }
+  }
+}
 
 function setInstance (instance) {
   // 标记index
@@ -41,6 +53,9 @@ function transformOptions (options, resolve) {
       message
     }
   }
+
+  mergeOptions(options)
+
   const onClose = options.onClose
   options.onClose = function (instance) {
     removeInstance(instance)
@@ -90,4 +105,8 @@ export function destroyAll () {
     const instance = instances[key]
     instance.visible = false
   }
+}
+
+export function config (options) {
+  globalOptions = options
 }
