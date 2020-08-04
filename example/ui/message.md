@@ -46,6 +46,8 @@ export default {
 <template>
   <w-button @click="handleShowSuccess">成功信息</w-button>
   <w-button @click="handleShowError">错误信息</w-button>
+  <w-button @click="handleShowWarning">警告信息</w-button>
+  <w-button @click="handleShowInfo">提示信息</w-button>
 </template>
 <script>
 export default {
@@ -59,6 +61,18 @@ export default {
     handleShowError() {
       this.$message.error({
         message: '很遗憾，这是一条错误消息',
+        time: 2000
+      })
+    },
+    handleShowWarning() {
+      this.$message.warning({
+        message: '很遗憾，这是一条警告消息',
+        time: 2000
+      })
+    },
+    handleShowInfo() {
+      this.$message.info({
+        message: '很遗憾，这是一条警告消息',
         time: 2000
       })
     }
