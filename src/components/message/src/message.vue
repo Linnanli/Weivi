@@ -56,14 +56,14 @@ export default {
     }
   },
   mounted () {
-    this.waitDestroy()
+    this.autoClose()
   },
   methods: {
     afterLeave () {
       removeDom(this.$el)
       this.$destroy()
     },
-    waitDestroy () {
+    autoClose () {
       if (!this.time) return
       const timer = setTimeout(() => {
         this.visible = false
