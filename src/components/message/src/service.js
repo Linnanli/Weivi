@@ -33,31 +33,61 @@ function removeInstance (instance) {
   }
 }
 
-function transformOptions (options) {
+function transformOptions (options, resolve) {
+  let message = ''
+  if (typeof options === 'string') {
+    message = options
+    options = {
+      message
+    }
+  }
   const onClose = options.onClose
   options.onClose = function (instance) {
     removeInstance(instance)
     if (typeof onClose === 'function') {
       onClose(instance)
     }
+    resolve(instance)
+  }
+
+  return options
+}
+
+function createMessageTypeFunc (messageService, types) {
+  for (let i = 0; i < types.length; i++) {
+    const type = types[i]
+    messageService[type] = function (options) {
+      options.type = type
+      return messageService(options)
+    }
   }
 }
 
-export default (Vue) => {
+export function serviceFactory (Vue) {
   if (!MessageConstructor) {
     MessageConstructor = Vue.extend(message)
-  }
-  const Loading = (options) => {
-    transformOptions(options)
-    const instance = new MessageConstructor({
-      propsData: options
-    })
-    instance.$mount()
-    setInstance(instance)
-    document.body.appendChild(instance.$el)
-    instance.visible = true
-    return instance
+    createMessageTypeFunc(messageService, ['success', 'error', 'info', 'warning'])
   }
 
-  return Loading
+  function messageService (options) {
+    return new Promise((resolve) => {
+      options = transformOptions(options, resolve)
+      const instance = new MessageConstructor({
+        propsData: options
+      })
+      instance.$mount()
+      setInstance(instance)
+      document.body.appendChild(instance.$el)
+      instance.visible = true
+    })
+  }
+
+  return messageService
+}
+
+export function destroyAll () {
+  for (const key in instances) {
+    const instance = instances[key]
+    instance.visible = false
+  }
 }

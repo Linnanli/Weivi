@@ -33,11 +33,11 @@ export default {
     },
     type: {
       type: String,
-      default: 'success'
+      default: 'info'
     },
     time: {
       type: Number,
-      default: 0
+      default: 3000
     },
     showClose: {
       type: Boolean,
