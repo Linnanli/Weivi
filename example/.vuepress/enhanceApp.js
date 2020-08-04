@@ -1,5 +1,5 @@
-import Components from '@src'
-import '@src/assets/style/index.scss'
+import Components from '@'
+import '@/assets/style/index.scss'
 
 function loadScript (src) {
   const script = document.createElement('script')
@@ -10,6 +10,6 @@ function loadScript (src) {
 export default ({
   Vue
 }) => {
-  loadScript('//at.alicdn.com/t/font_1924212_nqlpdxeaxf.js')
+  loadScript('//at.alicdn.com/t/font_1924212_8zejwbaz66g.js')
   Vue.use(Components)
 }

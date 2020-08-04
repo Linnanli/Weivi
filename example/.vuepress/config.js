@@ -25,7 +25,7 @@ module.exports = {
     },
     chainWebpack: (config, isServer) => {
       if (!isServer) {
-        config.resolve.alias.set('@src', path.resolve(__dirname, '../../src'))
+        config.resolve.alias.set('@', path.resolve(__dirname, '../../src'))
         config.plugin('DefineVersionENV')
               .use(webpack.DefinePlugin, [
                 {
