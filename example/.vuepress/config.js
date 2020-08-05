@@ -25,9 +25,6 @@ module.exports = {
     },
     chainWebpack: (config, isServer) => {
       if (!isServer) {
-        config.externals({
-          vue: 'Vue'
-        })
         config.resolve.alias.set('@', path.resolve(__dirname, '../../src'))
         config.plugin('DefineVersionENV')
               .use(webpack.DefinePlugin, [
