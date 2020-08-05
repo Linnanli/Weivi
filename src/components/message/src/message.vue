@@ -10,10 +10,11 @@
       <div class="w-message__content">
         {{ message }}
       </div>
-      <w-icon v-if="showClose"
-              class="w-message__close"
-              name="close"
-              @click.native="close"/>
+      <svg v-if="showClose"
+           class="w-icon w-message__close"
+           @click="close">
+        <use xlink:href="#icon-close"></use>
+      </svg>
     </div>
   </transition>
 </template>
@@ -23,10 +24,6 @@ import { removeDom } from '@/common/utils/dom'
 export default {
   name: 'WMessage',
   props: {
-    visible: {
-      type: Boolean,
-      default: false
-    },
     message: {
       type: String,
       required: true
@@ -48,11 +45,9 @@ export default {
       default: null
     }
   },
-  watch: {
-    visible (newValue) {
-      if (!newValue && this.onClose) {
-        this.onClose(this)
-      }
+  data () {
+    return {
+      visible: false
     }
   },
   mounted () {
@@ -63,10 +58,19 @@ export default {
       removeDom(this.$el)
       this.$destroy()
     },
+    close () {
+      this.visible = false
+      if (this.onClose) {
+        this.onClose(this)
+      }
+    },
+    open () {
+      this.visible = true
+    },
     autoClose () {
       if (!this.time) return
       const timer = setTimeout(() => {
-        this.visible = false
+        this.close()
         clearTimeout(timer)
       }, this.time)
     }

@@ -8,7 +8,7 @@ let globalOptions = {}
 
 function mergeOptions (options) {
   for (const key in globalOptions) {
-    if (~['message', 'visible', 'type'].indexOf(key)) {
+    if (~['message', 'type'].indexOf(key)) {
       delete globalOptions[key]
     }
     if (!(key in options)) {
@@ -61,7 +61,7 @@ function transformOptions (options, resolve) {
   options.onClose = function (instance) {
     removeInstance(instance)
     if (typeof onClose === 'function') {
-      onClose(instance)
+      onClose()
     }
     resolve(instance)
   }
@@ -79,10 +79,11 @@ function createMessageTypeFunc (types) {
   }
 }
 
+createMessageTypeFunc(['success', 'error', 'info', 'warning'])
+
 export function messageService (options) {
   if (!MessageConstructor) {
     MessageConstructor = Vue.extend(message)
-    createMessageTypeFunc(['success', 'error', 'info', 'warning'])
   }
 
   return new Promise((resolve) => {
@@ -93,14 +94,14 @@ export function messageService (options) {
     instance.$mount()
     setInstance(instance)
     document.body.appendChild(instance.$el)
-    instance.visible = true
+    instance.open()
   })
 }
 
 export function destroyAll () {
   for (const key in instances) {
     const instance = instances[key]
-    instance.visible = false
+    instance.close()
   }
 }
 
