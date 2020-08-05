@@ -30,14 +30,18 @@ describe('message component', () => {
     expect(messageWrapper.find('.w-message__content').text()).toBe('这是一个message')
   })
 
-  it('test auto close', async () => {
+  it('test auto close', async (done) => {
     messageService({
       message: '这是一个message',
-      time: 500
+      time: 50
     })
     await Vue.nextTick()
-    const messageWrapper = createWrapper(document.querySelector('.w-message').__vue__)
-    expect(messageWrapper.exists()).toBe(true)
+    const timer = setTimeout(() => {
+      const ele = document.querySelector('.w-message')
+      expect(ele).toBeNull()
+      clearTimeout(timer)
+      done()
+    }, 600)
   })
 
   it('test show close', async () => {
