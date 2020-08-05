@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import message from './message'
 
 let MessageConstructor = null
@@ -68,7 +69,7 @@ function transformOptions (options, resolve) {
   return options
 }
 
-function createMessageTypeFunc (messageService, types) {
+function createMessageTypeFunc (types) {
   for (let i = 0; i < types.length; i++) {
     const type = types[i]
     messageService[type] = function (options) {
@@ -78,26 +79,22 @@ function createMessageTypeFunc (messageService, types) {
   }
 }
 
-export function serviceFactory (Vue) {
+export function messageService (options) {
   if (!MessageConstructor) {
     MessageConstructor = Vue.extend(message)
-    createMessageTypeFunc(messageService, ['success', 'error', 'info', 'warning'])
+    createMessageTypeFunc(['success', 'error', 'info', 'warning'])
   }
 
-  function messageService (options) {
-    return new Promise((resolve) => {
-      options = transformOptions(options, resolve)
-      const instance = new MessageConstructor({
-        propsData: options
-      })
-      instance.$mount()
-      setInstance(instance)
-      document.body.appendChild(instance.$el)
-      instance.visible = true
+  return new Promise((resolve) => {
+    options = transformOptions(options, resolve)
+    const instance = new MessageConstructor({
+      propsData: options
     })
-  }
-
-  return messageService
+    instance.$mount()
+    setInstance(instance)
+    document.body.appendChild(instance.$el)
+    instance.visible = true
+  })
 }
 
 export function destroyAll () {

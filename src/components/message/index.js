@@ -1,9 +1,10 @@
-import { destroyAll, config, serviceFactory } from './src/service'
+import { destroyAll, config, messageService } from './src/service'
 
 export default {
   destroyAll,
   config,
+  Message: messageService,
   install: (Vue) => {
-    Vue.prototype.$message = serviceFactory(Vue)
+    Vue.prototype.$message = messageService
   }
 }
