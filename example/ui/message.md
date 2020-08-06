@@ -22,7 +22,10 @@ export default {
     handleSuccessMessage() {
       this.$message({
         type: 'success',
-        message: '这是一条消息'
+        message: '这条消息使用onClose监听关闭',
+        onClose: () => {
+          this.$message('message已关闭')
+        }
       })
     },
     handleUsePromise() {
