@@ -1,6 +1,9 @@
-import { shallowMount, mount } from '@vue/test-utils'
+import { shallowMount, mount, createLocalVue } from '@vue/test-utils'
 import WButton from '@/components/button'
 import WIcon from '@/components/icon'
+
+const localVue = createLocalVue()
+localVue.use(WButton)
 
 describe('button', () => {
   it('test create', () => {
@@ -43,19 +46,59 @@ describe('button', () => {
   })
 
   it('test button icon', async () => {
-    const wrapper = mount(WButton, {
-      components: {
-        WIcon
-      },
-      propsData: {
-        icon: 'setting'
-      },
-      slots: {
-        default: 'i am button'
+    let wrapper = mount({
+      render () {
+        return (
+          <w-button icon="setting"/>
+        )
       }
+    }, {
+      localVue
     })
-    const iconComponent = wrapper.findComponent({ name: 'WIcon' })
-    expect(iconComponent.props().name).toBe('setting')
+    wrapper = wrapper.findComponent(WButton)
+    expect(wrapper.find('use').attributes().href).toBe('#icon-setting')
+  })
+
+  it('test text button', async () => {
+    let wrapper = mount({
+      render () {
+        return (
+          <w-button text/>
+        )
+      }
+    }, {
+      localVue
+    })
+    wrapper = wrapper.findComponent(WButton)
+    expect(wrapper.classes()).toContain('is-text')
+  })
+
+  it('test button type', async () => {
+    let wrapper = mount({
+      render () {
+        return (
+          <w-button type="primary" />
+        )
+      }
+    }, {
+      localVue
+    })
+    wrapper = wrapper.findComponent(WButton)
+    expect(wrapper.classes()).toContain('w-button--primary')
+  })
+
+  it('test block button', async () => {
+    let wrapper = mount({
+      render () {
+        return (
+          <w-button block/>
+        )
+      }
+    }, {
+      localVue
+    })
+    wrapper = wrapper.findComponent(WButton)
+    expect(wrapper.classes()).toContain('w-button--block')
   })
 
   it('test icon position', () => {
