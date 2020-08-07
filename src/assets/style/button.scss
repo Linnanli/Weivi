@@ -84,6 +84,7 @@ $--text-button-type-maps: (
   &:not(:disabled):active::after{
     content: '';
     position: absolute;
+    z-index: 1;
     left: 0;
     right: 0;
     top: 0;
