@@ -4,11 +4,11 @@ $--col-prefix: w-col;
     @for $i from 1 through 24 {
         $grid: $i / 24 * 100%;
 
-        &#{&}-#{$i}{
+        &-#{$i}{
             width: $grid;
         }
 
-        &#{&}-offset-#{$i}{
+        &-offset-#{$i}{
             margin-left: $grid;
         }
     }
@@ -18,7 +18,7 @@ $--col-prefix: w-col;
     @for $i from 1 through 24 {
         $grid: $i / 24 * 100%;
 
-        &#{&}-#{$screen-size-prefix}-#{$i}{
+        &-#{$screen-size-prefix}-#{$i}{
             
             @if $max-width and $min-width {
                 @media (min-width: $min-width) and (max-width: $max-width) {
@@ -36,7 +36,7 @@ $--col-prefix: w-col;
             
         }
 
-        &#{&}-#{$screen-size-prefix}-offset-#{$i}{
+        &-#{$screen-size-prefix}-offset-#{$i}{
             @if $max-width and $min-width {
                 @media (min-width: $min-width) and (max-width: $max-width) {
                     margin-left: $grid;
