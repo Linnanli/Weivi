@@ -1,6 +1,6 @@
 ---
 title: Grid 栅格
-autoGroup-1: Basic
+autoGroup-2: Layout
 sidebarDepth: 0
 ---
 
