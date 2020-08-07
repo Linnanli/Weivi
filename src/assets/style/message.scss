@@ -1,4 +1,4 @@
-$message_type_maps: (
+$--message-type-maps: (
     success: (
         bgColor: #f0f9eb,
         borderColor: #e1f3d8
@@ -33,12 +33,12 @@ $message_type_maps: (
     font-size: 14px;
     transition: transform 0.5s ease, opacity 0.5s ease, top 0.5s ease;
 
-    &.w-message-fade-enter, &.w-message-fade-leave-active{
+    &-fade-enter, &-fade-leave-active{
         opacity: 0;
         transform: translate(-50%, -100%);
     }
 
-    @each $type, $value in $message_type_maps {
+    @each $type, $value in $--message-type-maps {
         &--#{$type}{
             background-color: map-get($value, bgColor);
             border-color: map-get($value, borderColor);
