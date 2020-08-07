@@ -1,64 +1,200 @@
 @import "./var/button.scss";
 
 $--button-prefix: w-button;
+$--button-type-maps: (
+  default: (
+    bgColor: #fff,
+    borderColor: #d9d9d9,
+    fontColor: rgba(0, 0, 0, 0.65),
+    focusBgColor: #fff,
+    focusBorderColor: #40a9ff,
+    focusFontColor: #40a9ff,
+    activeBgColor: #fff,
+    activeBorderColor: #096dd9,
+    activeFontColor: #096dd9,
+  ),
+  primary: (
+    bgColor: #1890ff,
+    borderColor: #1890ff,
+    fontColor: #fff,
+    focusBgColor: #40a9ff,
+    focusBorderColor: #40a9ff,
+    focusFontColor: #fff,
+    activeBgColor: #096dd9,
+    activeBorderColor: #096dd9,
+    activeFontColor: #fff,
+  ),
+  danger: (
+    bgColor: #fff,
+    borderColor: #ff4d4f,
+    fontColor: #ff4d4f,
+    focusBgColor: #fff,
+    focusBorderColor: #ff7875,
+    focusFontColor: #ff7875,
+    activeBgColor: #fff,
+    activeBorderColor: #d9363e,
+    activeFontColor: #d9363e,
+  ),
+);
+$--text-button-type-maps: (
+  default: (
+    fontColor: rgba(0, 0, 0, 0.65),
+    focusFontColor: rgba(0, 0, 0, 0.8),
+    activeFontColor: rgba(0, 0, 0, 0.8),
+  ),
+  primary: (
+    fontColor: #1890ff,
+    focusFontColor: #40a9ff,
+    activeFontColor: #096dd9,
+  ),
+  danger: (
+    fontColor: #ff4d4f,
+    focusFontColor: #ff7875,
+    activeFontColor: #d9363e,
+  ),
+);
 
-.#{$--button-prefix}{
+@mixin button-color($value, $type, $is-text: false) {
+  background-color: map-get($value, #{$type}BgColor);
+  border-color: map-get($value, #{$type}BorderColor);
+  color: map-get($value, #{$type}FontColor);
+  fill: map-get($value, #{$type}FontColor);
+}
+
+@mixin text-button-color($value, $type) {
+  color: map-get($value, #{$type}FontColor);
+  fill: map-get($value, #{$type}FontColor);
+}
+
+.#{$--button-prefix} {
   font-size: $--font-size;
   height: $--button-height;
-  padding: 0 1em;
+  padding: 0 16px;
   border-radius: $--border-radius;
-  border: 1px solid $--border-color;
-  background-color: $--button-bg;
+  border: 1px solid;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   vertical-align: middle;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.5s ease;
 
-  &+.w-button{
-    margin-left: 0.4em;
-  }
-
-  &[disabled] {
-    background-color: $--button-disabled-bg;
-    border-color: $--button-border-disabled-color;
-    color: $--button-disabled-color;
-    outline: none;
+  & + .w-button {
+    margin-left: 8px;
   }
 
-  &:hover{
-    border-color: $--border-color-hover;
-  }
-  &:active{
-    background-color: $--button-active-bg;
-  }
-  &:focus{
-    outline: none;
+  &#{&}--block {
+    width: 100%;
+    margin-left: 0;
   }
 
-  &__icon{
-    margin-right: 0.3em;
+  &:not(.is-loading):not(.is-text):disabled {
+    color: rgba(0, 0, 0, 0.25);
+    background: #f5f5f5;
+    border-color: #d9d9d9;
+    fill: rgba(0, 0, 0, 0.25);
+    cursor: not-allowed;
   }
 
-  &__loading{
+  &.is-text:disabled {
+    color: rgba(0, 0, 0, 0.25);
+    fill: rgba(0, 0, 0, 0.25);
+    cursor: not-allowed;
+  }
+
+  &.is-loading {
+    cursor: default;
+    opacity: 0.35;
+  }
+
+  &.is-text {
+    border-color: transparent;
+    background-color: transparent;
+    padding: 0 8px;
+    height: 28px;
+  }
+
+  &__icon {
+    transition: width 0.1s ease-out;
+  }
+
+  &__icon + &__content {
+    margin-left: 4px;
+  }
+
+  &-icon-fade-enter,
+  &-icon-fade-leave-active {
+    width: 0 !important;
+    opacity: 0;
+  }
+
+  &-fade-enter-active {
+    opacity: 1;
+  }
+
+  &__loading {
     animation: WButtonloading 1s linear infinite;
     @keyframes WButtonloading {
       from {
         transform: rotate(0);
       }
-      to{
+      to {
         transform: rotate(360deg);
       }
     }
   }
 
-  &__icon--right{
+  &__icon--right {
     .#{$--button-prefix}__content {
       order: 1;
     }
     .#{$--button-prefix}__icon {
       order: 2;
-      margin-left: 0.3em;
-      margin-right: 0;
+    }
+    .#{$--button-prefix}__icon + .#{$--button-prefix}__content {
+      margin-right: 4px;
+      margin-left: 0;
+    }
+  }
+}
+
+@each $key, $value in $--text-button-type-maps {
+  .#{$--button-prefix}--#{$key} {
+    &.is-text {
+      color: map-get($value, fontColor);
+      fill: map-get($value, fontColor);
+
+      &:not(:disabled):focus {
+        @include text-button-color($value, focus);
+      }
+      &:not(:disabled):hover {
+        @include text-button-color($value, focus);
+      }
+      &:not(:disabled):active {
+        @include text-button-color($value, active);
+      }
+    }
+  }
+}
+
+@each $key, $value in $--button-type-maps {
+  &.#{$--button-prefix}--#{$key} {
+    &:not(.is-text) {
+      background-color: map-get($value, bgColor);
+      border-color: map-get($value, borderColor);
+      color: map-get($value, fontColor);
+      fill: map-get($value, fontColor);
+
+      &:not(:disabled):focus {
+        @include button-color($value, focus);
+      }
+      &:not(:disabled):hover {
+        @include button-color($value, focus);
+      }
+      &:not(:disabled):active {
+        @include button-color($value, active);
+      }
     }
   }
 }

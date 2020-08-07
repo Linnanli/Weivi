@@ -1,15 +1,22 @@
 <template>
   <button class="w-button"
-          :class="{ 'w-button__icon--right': iconPosition === 'right' }"
+          :class="{
+            'w-button__icon--right': iconPosition === 'right',
+            [`w-button--${type}`]: true,
+            'w-button--block': block,
+            'is-loading': loading,
+            'is-text': text
+          }"
           :disabled="isDisabled"
           @click="handleClick">
-    <w-icon v-if="loading"
-            class="w-button__icon w-button__loading"
-            name="loading"/>
-    <w-icon v-if="icon && !loading"
-            class="w-button__icon"
-            :name="icon"/>
-    <div class="w-button__content">
+    <transition name="w-button-icon-fade">
+      <svg v-if="showIcon"
+           class="w-icon w-button__icon"
+           :class="{ 'w-button__loading': loading }">
+          <use :xlink:href="`#icon-${ loading ? 'loading' : icon}`"></use>
+      </svg>
+    </transition>
+    <div class="w-button__content" v-if="$slots.default">
       <slot/>
     </div>
   </button>
@@ -26,11 +33,23 @@ export default {
     }
   },
   props: {
+    type: {
+      type: String,
+      default: 'default'
+    },
     buttonKey: {
       type: String,
       default: ''
     },
     disabled: {
+      type: Boolean,
+      default: false
+    },
+    block: {
+      type: Boolean,
+      default: false
+    },
+    text: {
       type: Boolean,
       default: false
     },
@@ -53,7 +72,13 @@ export default {
   computed: {
     isDisabled () {
       return this.disabled || this.loading
+    },
+    showIcon () {
+      return this.icon || this.loading
     }
+  },
+  created () {
+    console.log(this.$slots.default)
   },
   methods: {
     handleClick (e) {
