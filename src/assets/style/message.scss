@@ -1,23 +1,32 @@
+$--message-prefix: w-message;
 $--message-type-maps: (
     success: (
         bgColor: #f0f9eb,
-        borderColor: #e1f3d8
+        borderColor: #e1f3d8,
+        iconColor: #67c23a,
+        fontColor: #67c23a
     ),
     warning: (
         bgColor: #fdf6ec,
-        borderColor: #faecd8
+        borderColor: #faecd8,
+        iconColor: #e6a23c,
+        fontColor: #e6a23c
     ),
     error: (
         bgColor: #fef0f0,
-        borderColor: #fde2e2
+        borderColor: #fde2e2,
+        iconColor: #f56c6c,
+        fontColor: #f56c6c
     ),
     info: (
         bgColor: #ebeef5,
-        borderColor: #edf2fc
+        borderColor: #edf2fc,
+        iconColor: #909399,
+        fontColor: #909399
     )
 );
 
-.w-message{
+.#{$--message-prefix} {
     background-color: white;
     position: fixed;
     left: 50%;
@@ -27,34 +36,48 @@ $--message-type-maps: (
     border: 1px solid;
     border-radius: 4px;
     box-sizing: border-box;
-    max-width: 600px;
     display: flex;
     flex-direction: row;
+    align-items: center;
     font-size: 14px;
     transition: transform 0.5s ease, opacity 0.5s ease, top 0.5s ease;
 
-    &-fade-enter, &-fade-leave-active{
+    &-fade-enter,
+    &-fade-leave-active {
         opacity: 0;
         transform: translate(-50%, -100%);
     }
 
     @each $type, $value in $--message-type-maps {
-        &--#{$type}{
+        &--#{$type} {
             background-color: map-get($value, bgColor);
             border-color: map-get($value, borderColor);
+
+            .#{$--message-prefix}__icon {
+                color: map-get($value, iconColor);
+                fill: map-get($value, iconColor);
+            }
+            .#{$--message-prefix}__content {
+                color: map-get($value, fontColor);
+            }
         }
     }
 
-    &__content{
+    &__icon {
+        width: 14px;
+        height: 14px;
+        margin-right: 8px;
+        flex: 0 0 auto;
+    }
+
+    &__content {
+        max-width: 600px;
         line-height: 1;
         margin-right: 16px;
     }
 
-    &__close{
+    &__close {
         cursor: pointer;
-        position: absolute;
-        top: 50%;
-        right: 16px;
-        transform: translateY(-50%);
+        flex: 0 0 auto;
     }
 }

@@ -7,6 +7,9 @@
         }"
         v-show="visible"
     >
+      <svg class="w-icon w-message__icon">
+        <use xlink:href="#icon-info"></use>
+      </svg>
       <div class="w-message__content">
         {{ message }}
       </div>
