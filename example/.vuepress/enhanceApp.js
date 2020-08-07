@@ -10,6 +10,6 @@ function loadScript (src) {
 export default ({
   Vue
 }) => {
-  loadScript('//at.alicdn.com/t/font_1924212_8zejwbaz66g.js')
+  loadScript('//at.alicdn.com/t/font_1924212_5utzby7w1w.js')
   Vue.use(Components)
 }
