@@ -81,7 +81,7 @@ $--text-button-type-maps: (
   transition: all 0.5s ease;
   position: relative;
 
-  &.is-clicked::after{
+  &:not(:disabled):active::after{
     content: '';
     position: absolute;
     left: 0;
