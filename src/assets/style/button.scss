@@ -134,8 +134,8 @@ $--text-button-type-maps: (
   }
 
   &__loading {
-    animation: WButtonloading 1s linear infinite;
-    @keyframes WButtonloading {
+    animation: wbuttonloading 1s linear infinite;
+    @keyframes wbuttonloading {
       from {
         transform: rotate(0);
       }
