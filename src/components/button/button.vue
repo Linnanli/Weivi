@@ -1,13 +1,16 @@
 <template>
   <button class="w-button"
+          ref="button"
           :class="{
             'w-button__icon--right': iconPosition === 'right',
             [`w-button--${type}`]: true,
             'w-button--block': block,
             'is-loading': loading,
-            'is-text': text
+            'is-text': text,
+            'is-clicked': isClicked
           }"
           :disabled="isDisabled"
+          @mousedown="handleMousedown"
           @click="handleClick">
     <transition name="w-button-icon-fade">
       <svg v-if="showIcon"
@@ -69,6 +72,11 @@ export default {
       }
     }
   },
+  data () {
+    return {
+      isClicked: false
+    }
+  },
   computed: {
     isDisabled () {
       return this.disabled || this.loading
@@ -78,7 +86,11 @@ export default {
     }
   },
   methods: {
+    handleMousedown () {
+      this.isClicked = true
+    },
     handleClick (e) {
+      this.isClicked = false
       this.$emit('click', e)
       if (this.buttonGroupClick) {
         this.buttonGroupClick(this.buttonKey || this.getButtonIndex())
