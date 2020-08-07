@@ -77,9 +77,6 @@ export default {
       return this.icon || this.loading
     }
   },
-  created () {
-    console.log(this.$slots.default)
-  },
   methods: {
     handleClick (e) {
       this.$emit('click', e)
