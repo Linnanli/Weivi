@@ -1,6 +1,6 @@
 ---
 title: Message 消息提示
-autoGroup-1: Basic
+autoGroup-4: Notice
 sidebarDepth: 0
 ---
 
