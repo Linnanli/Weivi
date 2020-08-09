@@ -1,0 +1,68 @@
+$--radio-prefix: w-radio;
+
+.#{$--radio-prefix} {
+    @include util-middle;
+    cursor: pointer;
+
+    &__inner{
+        width: 16px;
+        height: 16px;
+        vertical-align: middle;
+        position: relative;
+        border: 1px solid #d9d9d9;
+        border-radius: 50%;
+        display: inline-block;
+        order: 1;
+        box-sizing: border-box;
+        transition: all 0.5s ease;
+        
+        &:hover{
+            border-color: #1890ff;
+        }
+
+        .#{$--radio-prefix}.is-checked > & {
+            border-color: #1890ff;
+        }
+
+        .#{$--radio-prefix} > &::after{
+            content: '';
+            position: absolute;
+            border-radius: inherit;
+            top: 50%;
+            left: 50%;
+            width: 8px;
+            height: 8px;
+            opacity: 0;
+            margin: -4px 0 0 -4px;
+            transform: scale(0);
+            transform-origin: center center;
+            transition: all 0.3s cubic-bezier(.78,.14,.15,.86);
+            background-color: #1890ff;
+        }
+
+        .#{$--radio-prefix}.is-checked > &::after{
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .#{$--radio-prefix}.is-checked > &::before{
+            @include wave-effect;
+        }
+    }
+
+    &__original{
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        margin: 0;
+        order: 2;
+    }
+
+    &__label {
+        vertical-align: middle;
+        display: inline-block;
+    }
+}
