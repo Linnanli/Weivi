@@ -1,0 +1,10 @@
+@keyframes wave-effect {
+    to {
+        left: -6px;
+        right: -6px;
+        top: -6px;
+        bottom: -6px;
+        opacity: 0;
+        border-width: 6px;
+    }
+}

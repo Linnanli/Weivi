@@ -83,29 +83,7 @@ $--text-button-type-maps: (
   user-select: none;
 
   &:not(:disabled):active::after{
-    content: '';
-    position: absolute;
-    z-index: 1;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    opacity: 0.6;
-    border: 0 solid;
-    border-color: inherit;
-    border-radius: inherit;
-    animation: wave-effect .4s cubic-bezier(.08,.82,.17,1);
-
-    @keyframes wave-effect {
-      to {
-        left: -6px;
-        right: -6px;
-        top: -6px;
-        bottom: -6px;
-        opacity: 0;
-        border-width: 6px;
-      }
-    }
+    @include wave-effect;
   }
 
   & + .w-button {
