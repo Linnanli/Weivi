@@ -8,31 +8,28 @@ $--radio-prefix: w-radio;
         cursor: not-allowed;
     }
 
-    &__inner{
+    &__inner {
         width: 16px;
         height: 16px;
         vertical-align: middle;
+        display: inline-block;
         position: relative;
+    }
+
+    &__overlay {
+        width: 100%;
+        height: 100%;
         border: 1px solid #d9d9d9;
         border-radius: 50%;
-        display: inline-block;
-        order: 1;
+        position: absolute;
         box-sizing: border-box;
         transition: all 0.5s ease;
-        
+
         &:hover{
             border-color: #1890ff;
         }
 
-        .#{$--radio-prefix}.is-checked > & {
-            border-color: #1890ff;
-        }
-
-        .#{$--radio-prefix}.is-disabled > & {
-            border-color: #d9d9d9;
-        }
-
-        .#{$--radio-prefix} > &::after{
+        &::after {
             content: '';
             position: absolute;
             border-radius: inherit;
@@ -47,22 +44,9 @@ $--radio-prefix: w-radio;
             transition: all 0.3s cubic-bezier(.78,.14,.15,.86);
             background-color: #1890ff;
         }
-
-        .#{$--radio-prefix}.is-disabled > &::after {
-            background-color: rgba(0, 0, 0, 0.2);
-        }
-
-        .#{$--radio-prefix}.is-checked > &::after{
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .#{$--radio-prefix}.is-checked > &::before{
-            @include wave-effect;
-        }
     }
 
-    &__original{
+    &__original {
         opacity: 0;
         width: 100%;
         height: 100%;
@@ -70,7 +54,29 @@ $--radio-prefix: w-radio;
         left: 0;
         top: 0;
         margin: 0;
-        order: 2;
+        z-index: 1;
+        cursor: pointer;
+
+        &:checked + .#{$--radio-prefix}__overlay {
+            border-color: #1890ff;
+        }
+
+        &:disabled + .#{$--radio-prefix}__overlay {
+            border-color: #d9d9d9;
+        }
+
+        &:disabled + .#{$--radio-prefix}__overlay::after {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        &:checked + .#{$--radio-prefix}__overlay::after {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        &:checked + .#{$--radio-prefix}__overlay::before {
+            @include wave-effect;
+        }
     }
 
     &__label {

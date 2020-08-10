@@ -1,7 +1,6 @@
 <template>
   <label class="w-radio"
          :class="{
-           'is-checked': isChecked,
            'is-disabled': disabled
          }">
     <span class="w-radio__inner">
@@ -11,7 +10,7 @@
              :disabled="disabled"
              :value="value"
              @click="handleChange"/>
-      <!-- <span class="w-radio__overlay"> -->
+      <span class="w-radio__overlay"/>
     </span>
     <span class="w-radio__label">
       <slot/>
@@ -47,11 +46,6 @@ export default {
       default: false
     }
   },
-  data () {
-    return {
-      isChecked: false
-    }
-  },
   watch: {
     model (newValue) {
       this.$uploadRadioChecked(newValue)
@@ -64,7 +58,7 @@ export default {
   },
   methods: {
     $uploadRadioChecked (value) {
-      this.isChecked = this.$refs.radio.checked = value === this.value
+      this.$refs.radio.checked = value === this.value
     },
     handleChange (e) {
       this.setValue(e.target.value)
