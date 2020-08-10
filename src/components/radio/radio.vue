@@ -46,8 +46,7 @@ export default {
   },
   watch: {
     model (newValue) {
-      const isEqual = newValue === this.value
-      this.isChecked = this.$refs.radio.checked = isEqual
+      this.$uploadRadioChecked(newValue)
     }
   },
   mounted () {
@@ -56,6 +55,9 @@ export default {
     }
   },
   methods: {
+    $uploadRadioChecked (value) {
+      this.isChecked = this.$refs.radio.checked = value === this.value
+    },
     handleChange (e) {
       this.setValue(e.target.value)
     },
@@ -63,9 +65,7 @@ export default {
       if (!this.radioGroupInstance) {
         this.$emit('change', value)
       } else {
-        this.radioGroupInstance.onModelChange(() => {
-          this.isChecked = this.$refs.radio.checked = this.radioGroupInstance.model === this.value
-        })
+        this.radioGroupInstance.onModelChange(this.$uploadRadioChecked)
         this.radioGroupInstance.setValue(value)
       }
     }
