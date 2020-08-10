@@ -1,10 +1,14 @@
 <template>
   <label class="w-radio"
-         :class="{ 'is-checked': isChecked }">
+         :class="{
+           'is-checked': isChecked,
+           'is-disabled': disabled
+         }">
     <span class="w-radio__inner">
       <input class="w-radio__original"
              type="radio"
              ref="radio"
+             :disabled="disabled"
              :value="value"
              @click="handleChange"/>
       <!-- <span class="w-radio__overlay"> -->
@@ -35,6 +39,10 @@ export default {
       default: ''
     },
     checked: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
       type: Boolean,
       default: false
     }

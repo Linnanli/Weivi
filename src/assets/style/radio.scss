@@ -4,6 +4,10 @@ $--radio-prefix: w-radio;
     @include util-middle;
     cursor: pointer;
 
+    &.is-disabled {
+        cursor: not-allowed;
+    }
+
     &__inner{
         width: 16px;
         height: 16px;
@@ -24,6 +28,10 @@ $--radio-prefix: w-radio;
             border-color: #1890ff;
         }
 
+        .#{$--radio-prefix}.is-disabled > & {
+            border-color: #d9d9d9;
+        }
+
         .#{$--radio-prefix} > &::after{
             content: '';
             position: absolute;
@@ -38,6 +46,10 @@ $--radio-prefix: w-radio;
             transform-origin: center center;
             transition: all 0.3s cubic-bezier(.78,.14,.15,.86);
             background-color: #1890ff;
+        }
+
+        .#{$--radio-prefix}.is-disabled > &::after {
+            background-color: rgba(0, 0, 0, 0.2);
         }
 
         .#{$--radio-prefix}.is-checked > &::after{
