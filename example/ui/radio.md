@@ -23,3 +23,25 @@ export default {
 </script>
 ```
 :::
+
+### Radio 组
+
+::: demo
+```html
+<template>
+  <w-radio-group v-model="value">
+    <w-radio value="1">男</w-radio>
+    <w-radio value="2" checked>女</w-radio>
+  </w-radio-group>
+</template>
+<script>
+export default {
+  data () {
+    return {
+      value: ''
+    }
+  }
+}
+</script>
+```
+:::
