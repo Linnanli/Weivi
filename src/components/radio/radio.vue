@@ -7,6 +7,7 @@
              ref="radio"
              :value="value"
              @click="handleChange"/>
+      <!-- <span class="w-radio__overlay"> -->
     </span>
     <span class="w-radio__label">
       <slot/>
@@ -19,6 +20,11 @@ export default {
   model: {
     prop: 'model',
     event: 'change'
+  },
+  inject: {
+    radioGroupInstance: {
+      default: null
+    }
   },
   props: {
     model: {
@@ -33,14 +39,15 @@ export default {
       default: false
     }
   },
-  watch: {
-    isChecked (newValue) {
-      this.$refs.radio.checked = newValue
+  data () {
+    return {
+      isChecked: false
     }
   },
-  computed: {
-    isChecked () {
-      return this.model === this.value
+  watch: {
+    model (newValue) {
+      const isEqual = newValue === this.value
+      this.isChecked = this.$refs.radio.checked = isEqual
     }
   },
   mounted () {
@@ -52,8 +59,15 @@ export default {
     handleChange (e) {
       this.setValue(e.target.value)
     },
-    setValue (value) {
-      this.$emit('change', value)
+    async setValue (value) {
+      if (!this.radioGroupInstance) {
+        this.$emit('change', value)
+      } else {
+        this.radioGroupInstance.onModelChange(() => {
+          this.isChecked = this.$refs.radio.checked = this.radioGroupInstance.model === this.value
+        })
+        this.radioGroupInstance.setValue(value)
+      }
     }
   }
 }

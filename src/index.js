@@ -11,6 +11,7 @@ import Main from './components/main'
 import Aside from './components/aside'
 import Message from './components/message'
 import Radio from './components/radio'
+import RadioGroup from './components/radio-group'
 
 const services = {
   Message
@@ -28,7 +29,8 @@ const components = {
   Footer,
   Main,
   Aside,
-  Radio
+  Radio,
+  RadioGroup
 }
 
 const install = (Vue) => {
