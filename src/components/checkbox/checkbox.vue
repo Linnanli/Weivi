@@ -54,22 +54,27 @@ export default {
     }
   },
   mounted () {
-    if (this.checked) {
-      this.setValue(this.checked)
+    if (!this.checkboxGroupInstance) {
+      this.setValue(this.checked || (this.model === this.trueValue))
+    } else {
+      this.setChecked(this.checked)
     }
   },
   methods: {
+    setChecked (value) {
+      this.$refs.checkbox.checked = value
+      return value
+    },
     handleChange (e) {
       this.setValue(e.target.checked)
     },
     async setValue (value) {
-      const isChecked = this.$refs.checkbox.checked = value
+      const isChecked = this.setChecked(value)
       if (!this.checkboxGroupInstance) {
         value = isChecked ? this.trueValue : this.falseValue
         this.$emit('change', value)
       } else {
-        value = isChecked ? this.value : null
-        this.checkboxGroupInstance.setValue(value)
+        this.checkboxGroupInstance.updateValue()
       }
     }
   }

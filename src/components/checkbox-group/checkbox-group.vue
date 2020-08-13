@@ -23,12 +23,13 @@ export default {
   },
   watch: {
     model () {
-      this.setChildChecked(this.$children)
+      this.setChildChecked(this.$children, 'update')
     }
   },
   mounted () {
     const instances = this.getComponentInstances('w-checkbox')
-    this.setChildChecked(instances)
+    this.setChildChecked(instances, 'init')
+    this.updateValue()
   },
   methods: {
     getComponentInstances (componentName = '') {
@@ -48,15 +49,20 @@ export default {
       }
       return this.componentInstances
     },
-    setChildChecked (instances) {
+    setChildChecked (instances, type) {
       for (let i = 0; i < instances.length; i++) {
         const instance = instances[i]
         if (instance.$options._componentTag === 'w-checkbox') {
-          instance.$refs.checkbox.checked = Boolean(~this.model.indexOf(instance.value))
+          const hashValue = Boolean(~this.model.indexOf(instance.value))
+          if (type === 'init') {
+            instance.$refs.checkbox.checked = instance.$refs.checkbox.checked ? true : hashValue
+          } else {
+            instance.$refs.checkbox.checked = hashValue
+          }
         }
       }
     },
-    setValue (value) {
+    updateValue () {
       const instances = this.getComponentInstances('w-checkbox')
       const values = new Set()
       for (let i = 0; i < instances.length; i++) {
