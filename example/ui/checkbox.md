@@ -54,8 +54,7 @@ export default {
     <w-checkbox value="A">A</w-checkbox>
     <w-checkbox value="B">B</w-checkbox>
     <w-checkbox value="C">C</w-checkbox>
-    <div>你的性别是: {{ value }}</div>
-    <w-button @click="handleClick"/>
+    <div>你的选项是: {{ value }}</div>
   </w-checkbox-group>
 </template>
 <script>
@@ -63,11 +62,6 @@ export default {
   data () {
     return {
       value: ['A']
-    }
-  },
-  methods: {
-    handleClick () {
-      this.value.push('B')
     }
   }
 }
