@@ -9,19 +9,49 @@ sidebarDepth: 2
 ::: demo
 ```html
 <template>
-  <w-checkbox v-model="value1" checked>男</w-checkbox>
-  <w-checkbox v-model="value" disabled checked>女</w-checkbox>
+  <w-checkbox v-model="value1">男</w-checkbox>
+  <w-checkbox v-model="value">女</w-checkbox>
 </template>
 <script>
 export default {
   data () {
     return {
-      value1: '1',
-      value: ''
+      value1: true,
+      value: false
     }
   }
 }
 </script>
+```
+:::
+
+
+### Checkbox 默认选中
+
+::: demo
+```html
+<template>
+  <w-checkbox v-model="value" checked>默认选中</w-checkbox>
+</template>
+<script>
+export default {
+  data () {
+    return {
+      value: false
+    }
+  }
+}
+</script>
+```
+:::
+
+### Checkbox 禁用
+
+::: demo
+```html
+<template>
+  <w-checkbox v-model="value1" disabled>禁止选中</w-checkbox>
+</template>
 ```
 :::
 
@@ -30,14 +60,14 @@ export default {
 ::: demo
 ```html
 <template>
-  <w-checkbox v-model="value" true-value="男" false-value="女">性别</w-checkbox>
-  <div>你的性别是: {{ value }}</div>
+  <w-checkbox v-model="value" true-value="已选中" false-value="未选中">自定义值</w-checkbox>
+  <div>值: {{ value }}</div>
 </template>
 <script>
 export default {
   data () {
     return {
-      value: '男'
+      value: '已选中'
     }
   }
 }
