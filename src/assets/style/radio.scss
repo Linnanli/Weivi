@@ -54,7 +54,6 @@ $--radio-prefix: w-radio;
         left: 0;
         top: 0;
         margin: 0;
-        z-index: 1;
         cursor: pointer;
 
         &:checked + .#{$--radio-prefix}__overlay {
@@ -74,7 +73,7 @@ $--radio-prefix: w-radio;
             transform: scale(1);
         }
 
-        &:checked + .#{$--radio-prefix}__overlay::before {
+        &:active + .#{$--radio-prefix}__overlay::before {
             @include wave-effect;
         }
     }

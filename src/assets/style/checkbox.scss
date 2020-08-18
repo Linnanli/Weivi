@@ -24,7 +24,6 @@ $--radio-prefix: w-checkbox;
         position: absolute;
         box-sizing: border-box;
         transition: all 0.5s ease;
-        z-index: 1;
         background-color: #fff;
 
         &:hover{
@@ -55,7 +54,6 @@ $--radio-prefix: w-checkbox;
         left: 0;
         top: 0;
         margin: 0;
-        z-index: 1;
         cursor: pointer;
 
         &:checked + .#{$--radio-prefix}__overlay {
@@ -77,7 +75,7 @@ $--radio-prefix: w-checkbox;
             transform: scale(1) rotate(45deg);
         }
 
-        &:checked + .#{$--radio-prefix}__overlay::before {
+        &:active + .#{$--radio-prefix}__overlay::before {
             @include wave-effect;
         }
     }
