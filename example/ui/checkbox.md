@@ -50,7 +50,7 @@ export default {
 ::: demo
 ```html
 <template>
-  <w-checkbox v-model="value1" disabled>禁止选中</w-checkbox>
+  <w-checkbox disabled>禁止选中</w-checkbox>
 </template>
 ```
 :::
