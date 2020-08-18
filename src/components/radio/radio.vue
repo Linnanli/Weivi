@@ -7,8 +7,8 @@
       <input class="w-radio__original"
              type="radio"
              ref="radio"
-             :disabled="disabled"
              :value="value"
+             :disabled="disabled"
              @click="handleChange"/>
       <span class="w-radio__overlay"/>
     </span>
@@ -48,17 +48,20 @@ export default {
   },
   watch: {
     model (newValue) {
-      this.$uploadRadioChecked(newValue)
+      this.setChecked(newValue === this.value)
     }
   },
   mounted () {
-    if (this.checked) {
-      this.setValue(this.value)
+    if (!this.radioGroupInstance) {
+      this.setChecked(this.checked || (this.value === this.model))
+      if (this.checked) this.setValue(this.value)
+    } else {
+      this.setChecked(this.checked)
     }
   },
   methods: {
-    $uploadRadioChecked (value) {
-      this.$refs.radio.checked = value === this.value
+    setChecked (checked) {
+      this.$refs.radio.checked = checked
     },
     handleChange (e) {
       this.setValue(e.target.value)
@@ -67,8 +70,7 @@ export default {
       if (!this.radioGroupInstance) {
         this.$emit('change', value)
       } else {
-        this.radioGroupInstance.onModelChange(this.$uploadRadioChecked)
-        this.radioGroupInstance.setValue(value)
+        this.radioGroupInstance.updateValue(value)
       }
     }
   }
