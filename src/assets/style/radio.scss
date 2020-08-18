@@ -73,7 +73,7 @@ $--radio-prefix: w-radio;
             transform: scale(1);
         }
 
-        &:active + .#{$--radio-prefix}__overlay::before {
+        &:not(:disabled):active + .#{$--radio-prefix}__overlay::before {
             @include wave-effect;
         }
     }

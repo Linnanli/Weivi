@@ -75,7 +75,7 @@ $--radio-prefix: w-checkbox;
             transform: scale(1) rotate(45deg);
         }
 
-        &:active + .#{$--radio-prefix}__overlay::before {
+        &:not(:disabled):active + .#{$--radio-prefix}__overlay::before {
             @include wave-effect;
         }
     }
