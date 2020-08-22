@@ -12,16 +12,16 @@ export default {
     }
   },
   model: {
-    prop: 'model',
+    prop: 'value',
     event: 'change'
   },
   props: {
-    model: {
+    value: {
       type: [String, Number, Boolean]
     }
   },
   watch: {
-    model (newValue) {
+    value (newValue) {
       const instances = this.getComponentInstances('w-radio')
       this.setChildChecked(instances, 'update')
     }
@@ -33,16 +33,16 @@ export default {
   },
   methods: {
     setChildChecked (instances, type) {
-      let radioValue = this.model
+      let radioValue = this.value
       for (let i = 0; i < instances.length; i++) {
         const instance = instances[i]
         if (instance.$options._componentTag === 'w-radio') {
-          const value = instance.value
+          const value = instance.label
           const radio = instance.$refs.radio
           if (type === 'init') {
-            radio.checked = radio.checked ? true : value === this.model
+            radio.checked = radio.checked ? true : value === radioValue
           } else {
-            radio.checked = value === this.model
+            radio.checked = value === radioValue
           }
           if (radio.checked) radioValue = value
         }

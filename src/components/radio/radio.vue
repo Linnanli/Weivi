@@ -7,7 +7,7 @@
       <input class="w-radio__original"
              type="radio"
              ref="radio"
-             :value="value"
+             :value="label"
              :disabled="disabled"
              @click="handleChange"/>
       <span class="w-radio__overlay"/>
@@ -21,7 +21,7 @@
 export default {
   name: 'WRadio',
   model: {
-    prop: 'model',
+    prop: 'value',
     event: 'change'
   },
   inject: {
@@ -30,10 +30,10 @@ export default {
     }
   },
   props: {
-    model: {
+    value: {
       type: [String, Number, Boolean]
     },
-    value: {
+    label: {
       type: [String, Number, Boolean],
       default: ''
     },
@@ -47,14 +47,14 @@ export default {
     }
   },
   watch: {
-    model (newValue) {
-      this.setChecked(newValue === this.value)
+    value (newValue) {
+      this.setChecked(newValue === this.label)
     }
   },
   mounted () {
     if (!this.radioGroupInstance) {
-      this.setChecked(this.checked || (this.value === this.model))
-      if (this.checked) this.setValue(this.value)
+      this.setChecked(this.checked || (this.label === this.value))
+      if (this.checked) this.setValue(this.label)
     } else {
       this.setChecked(this.checked)
     }
