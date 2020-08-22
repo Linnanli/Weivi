@@ -1,5 +1,5 @@
 /* eslint-disable no-return-assign */
-import { mount, createLocalVue, createWrapper } from '@vue/test-utils'
+import { mount, createLocalVue } from '@vue/test-utils'
 import Radio from '@/components/radio'
 import RadioGourp from '@/components/radio-group'
 
@@ -47,6 +47,33 @@ describe('col component', () => {
     expect(wrapper.find('.w-radio__original').element.checked).toBeTruthy()
   })
 
+  it('test change event', () => {
+    let changeEventMockFn = null
+
+    const wrapper = mount({
+      data () {
+        return {
+          value: ''
+        }
+      },
+      render () {
+        changeEventMockFn = jest.fn().mockImplementation((value) => {
+          this.value = value
+        })
+        return (
+          <w-radio value={this.value} on-change={changeEventMockFn} checked label="1">男</w-radio>
+        )
+      }
+    }, {
+      localVue
+    })
+    const radioWrapper = wrapper.find('.w-radio__original')
+    radioWrapper.trigger('click')
+    expect(wrapper.vm.$data.value).toBe('1')
+    expect(radioWrapper.element.checked).toBeTruthy()
+    expect(changeEventMockFn).toHaveBeenCalled()
+  })
+
   it('test group', () => {
     const wrapper = mount({
       data () {
@@ -65,21 +92,21 @@ describe('col component', () => {
     }, {
       localVue
     })
-    const radioEles = wrapper.findAll('.w-radio')
+    const radioWappers = wrapper.findAll('.w-radio')
     expect(wrapper.vm.$data.value).toBe('1')
     expect({
       text: '男',
       checked: true
     }).toEqual({
-      text: radioEles.at(0).find('.w-radio__label').text(),
-      checked: radioEles.at(0).find('.w-radio__original').element.checked
+      text: radioWappers.at(0).find('.w-radio__label').text(),
+      checked: radioWappers.at(0).find('.w-radio__original').element.checked
     })
     expect({
       text: '女',
       checked: false
     }).toEqual({
-      text: radioEles.at(1).find('.w-radio__label').text(),
-      checked: radioEles.at(1).find('.w-radio__original').element.checked
+      text: radioWappers.at(1).find('.w-radio__label').text(),
+      checked: radioWappers.at(1).find('.w-radio__original').element.checked
     })
   })
 
@@ -122,9 +149,37 @@ describe('col component', () => {
     }, {
       localVue
     })
-    const radioEle = wrapper.findAll('.w-radio').at(0).find('.w-radio__original')
+    const radioWapper = wrapper.findAll('.w-radio').at(0).find('.w-radio__original')
     expect(wrapper.vm.$data.value).toBe('1')
-    expect(radioEle.element.checked).toBe(true)
-    expect(radioEle.element.disabled).toBe(true)
+    expect(radioWapper.element.checked).toBe(true)
+    expect(radioWapper.element.disabled).toBe(true)
+  })
+
+  it('test group click', () => {
+    let changeEventMockFn = null
+    const wrapper = mount({
+      data () {
+        return {
+          value: ''
+        }
+      },
+      render () {
+        changeEventMockFn = jest.fn().mockImplementation((value) => {
+          this.value = value
+        })
+        return (
+          <w-radio-group value={this.value} on-change={changeEventMockFn}>
+            <w-radio label="1">男</w-radio>
+            <w-radio label="2">女</w-radio>
+          </w-radio-group>
+        )
+      }
+    }, {
+      localVue
+    })
+    const radioWapper = wrapper.findAll('.w-radio').at(0).find('.w-radio__original')
+    radioWapper.trigger('click')
+    expect(wrapper.vm.$data.value).toBe('1')
+    expect(changeEventMockFn).toHaveBeenCalled()
   })
 })
