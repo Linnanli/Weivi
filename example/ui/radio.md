@@ -9,8 +9,8 @@ sidebarDepth: 0
 ::: demo
 ```html
 <template>
-  <w-radio v-model="value" value="1">男</w-radio>
-  <w-radio v-model="value" value="2">女</w-radio>
+  <w-radio v-model="value" label="1">男</w-radio>
+  <w-radio v-model="value" label="2">女</w-radio>
   <div>您勾选的性别：{{ value }}</div>
 </template>
 <script>
@@ -31,8 +31,8 @@ export default {
 ```html
 <template>
   <w-radio-group v-model="value">
-    <w-radio value="1">男</w-radio>
-    <w-radio value="2">女</w-radio>
+    <w-radio label="1">男</w-radio>
+    <w-radio label="2">女</w-radio>
   </w-radio-group>
   <div>您勾选的性别：{{ value }}</div>
 </template>
@@ -54,8 +54,8 @@ export default {
 ```html
 <template>
   <w-radio-group v-model="value">
-    <w-radio value="1" disabled>男</w-radio>
-    <w-radio value="2" disabled checked>女</w-radio>
+    <w-radio label="1" disabled>男</w-radio>
+    <w-radio label="2" disabled checked>女</w-radio>
   </w-radio-group>
   <div>您勾选的性别：{{ value }}</div>
 </template>
