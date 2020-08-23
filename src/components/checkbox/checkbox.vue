@@ -20,7 +20,7 @@
 export default {
   name: 'WCheckbox',
   model: {
-    prop: 'model',
+    prop: 'value',
     event: 'change'
   },
   inject: {
@@ -29,11 +29,11 @@ export default {
     }
   },
   props: {
-    model: {
+    value: {
       type: [String, Number, Boolean],
       default: null
     },
-    value: {
+    label: {
       type: [String, Number, Boolean]
     },
     trueValue: {
@@ -55,7 +55,7 @@ export default {
   },
   mounted () {
     if (!this.checkboxGroupInstance) {
-      this.setValue(this.checked || (this.model === this.trueValue))
+      this.setValue(this.checked || (this.value === this.trueValue))
     } else {
       this.setChecked(this.checked)
     }

@@ -12,17 +12,17 @@ export default {
     }
   },
   model: {
-    prop: 'model',
+    prop: 'value',
     event: 'change'
   },
   props: {
-    model: {
+    value: {
       type: Array,
       default: () => []
     }
   },
   watch: {
-    model () {
+    value () {
       this.setChildChecked(this.$children, 'update')
     }
   },
@@ -53,7 +53,7 @@ export default {
       for (let i = 0; i < instances.length; i++) {
         const instance = instances[i]
         if (instance.$options._componentTag === 'w-checkbox') {
-          const hashValue = Boolean(~this.model.indexOf(instance.value))
+          const hashValue = Boolean(~this.value.indexOf(instance.label))
           if (type === 'init') {
             instance.$refs.checkbox.checked = instance.$refs.checkbox.checked ? true : hashValue
           } else {
@@ -68,7 +68,7 @@ export default {
       for (let i = 0; i < instances.length; i++) {
         const instance = instances[i]
         if (instance.$options._componentTag === 'w-checkbox' && instance.$refs.checkbox.checked) {
-          values.add(instance.value)
+          values.add(instance.label)
         }
       }
       this.$emit('change', Array.from(values))
