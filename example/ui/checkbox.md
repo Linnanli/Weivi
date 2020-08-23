@@ -81,9 +81,9 @@ export default {
 ```html
 <template>
   <w-checkbox-group v-model="value" >
-    <w-checkbox value="A">A</w-checkbox>
-    <w-checkbox value="B" checked>B</w-checkbox>
-    <w-checkbox value="C">C</w-checkbox>
+    <w-checkbox label="A">A</w-checkbox>
+    <w-checkbox label="B" checked>B</w-checkbox>
+    <w-checkbox label="C">C</w-checkbox>
     <div>你的选项是: {{ value }}</div>
   </w-checkbox-group>
 </template>
