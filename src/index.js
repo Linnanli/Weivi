@@ -14,6 +14,7 @@ import Radio from './components/radio'
 import RadioGroup from './components/radio-group'
 import Checkbox from './components/checkbox'
 import CheckboxGroup from './components/checkbox-group'
+import Switch from './components/switch'
 
 const services = {
   Message
@@ -34,7 +35,8 @@ const components = {
   Radio,
   RadioGroup,
   Checkbox,
-  CheckboxGroup
+  CheckboxGroup,
+  Switch
 }
 
 const install = (Vue) => {
