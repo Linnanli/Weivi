@@ -8,7 +8,7 @@
            ref="switch"
            :disabled="disabled"
            @change="handleChange"/>
-      <span class="w-switch__overlay"/>
+    <span class="w-switch__overlay"/>
   </label>
 </template>
 <script>

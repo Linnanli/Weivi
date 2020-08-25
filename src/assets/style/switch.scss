@@ -1,0 +1,44 @@
+$--radio-prefix: w-switch;
+
+.#{$--radio-prefix} {
+    width: 44px;
+    height: 22px;
+    display: inline-block;
+    position: relative;
+
+    &__overlay{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 100px;
+        transition: all 0.5s ease;
+        background-color: rgba(0,0,0,.25);
+        padding: 2px;
+        box-sizing: border-box;
+
+        &::before {
+            content: '';
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background-color: #fff;
+            box-shadow: 0 2px 4px 0 rgba(0,35,11,.2);
+            transition: all .2s ease-in-out;
+        }
+    }
+
+    &__original{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        margin: 0;
+        opacity: 0;
+
+        &:checked + .#{$--radio-prefix}__overlay::before {
+           transform: translateX(100%);
+        }
+    }
+}
