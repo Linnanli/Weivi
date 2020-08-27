@@ -5,6 +5,7 @@ $--radio-prefix: w-switch;
     height: 22px;
     display: inline-block;
     position: relative;
+    cursor: pointer;
 
     &__overlay{
         position: absolute;
@@ -23,7 +24,9 @@ $--radio-prefix: w-switch;
             display: inline-block;
             width: 18px;
             height: 18px;
-            border-radius: 50%;
+            left: 2px;
+            position: absolute;
+            border-radius: 9px;
             background-color: #fff;
             box-shadow: 0 2px 4px 0 rgba(0,35,11,.2);
             transition: all .2s ease-in-out;
@@ -37,8 +40,20 @@ $--radio-prefix: w-switch;
         margin: 0;
         opacity: 0;
 
+        &:checked + .#{$--radio-prefix}__overlay {
+           background-color: #1890ff;
+        }
+
         &:checked + .#{$--radio-prefix}__overlay::before {
-           transform: translateX(100%);
+           left: 100%;
+           margin-left: -20px;
+        }
+
+        &:not(:disabled):active + .#{$--radio-prefix}__overlay::before {
+            width: 22px;
+        }
+        &:not(:disabled):checked:active + .#{$--radio-prefix}__overlay::before {
+            margin-left: -24px;
         }
     }
 }
