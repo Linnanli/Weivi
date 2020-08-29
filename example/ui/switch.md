@@ -60,3 +60,24 @@ export default {
 </script>
 ```
 :::
+
+### Switch 禁用
+
+::: demo
+```html
+<template>
+  <w-switch v-model="value" disabled />
+  <w-switch v-model="value1" disabled />
+</template>
+<script>
+export default {
+  data () {
+    return {
+      value: true,
+      value1: false
+    }
+  }
+}
+</script>
+```
+:::
