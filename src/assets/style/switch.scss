@@ -38,6 +38,8 @@ $--radio-prefix: w-switch;
         margin-right: 6px;
         vertical-align: top;
         transition: margin .2s;
+        display: inline-block;
+        height: 100%;
     }
 
     &__original{
@@ -68,8 +70,13 @@ $--radio-prefix: w-switch;
             margin-left: -24px;
         }
 
+        &:not(:disabled):active + .#{$--radio-prefix}__overlay::after {
+            @include wave-effect(#1890ff);
+        }
+
         &:disabled + .#{$--radio-prefix}__overlay {
            opacity: .4;
+           cursor: not-allowed;
         }
     }
 }

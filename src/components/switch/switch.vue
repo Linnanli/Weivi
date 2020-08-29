@@ -1,8 +1,5 @@
 <template>
-  <label class="w-switch"
-         :class="{
-           'is-disabled': disabled
-         }">
+  <label class="w-switch">
     <input class="w-switch__original"
            type="checkbox"
            ref="switch"
