@@ -23,7 +23,8 @@
   </button>
 </template>
 <script>
-export default {
+import { computed, defineComponent, getCurrentInstance } from '@vue/composition-api'
+export default defineComponent({
   name: 'WButton',
   inject: {
     buttonGroupInstance: {
@@ -70,28 +71,33 @@ export default {
       }
     }
   },
-  computed: {
-    isDisabled () {
-      return this.disabled || this.loading
-    },
-    showIcon () {
-      return this.icon || this.loading
-    }
-  },
-  methods: {
-    handleClick (e) {
-      this.$emit('click', e)
-      if (this.buttonGroupClick) {
-        this.buttonGroupClick(this.buttonKey || this.getButtonIndex())
+  setup (props, ctx) {
+    const isDisabled = computed(() => props.disabled || props.loading)
+    const showIcon = computed(() => props.icon || props.loading)
+
+    const instanceProxy = getCurrentInstance().proxy
+
+    const handleClick = (e) => {
+      console.log(ctx)
+      ctx.emit('click', e)
+      if (instanceProxy.buttonGroupClick) {
+        instanceProxy.buttonGroupClick(instanceProxy.buttonKey || getButtonIndex())
       }
-    },
-    getButtonIndex () {
-      const vnodes = this.buttonGroupInstance.$slots.default
+    }
+
+    const getButtonIndex = () => {
+      const vnodes = instanceProxy.buttonGroupInstance.$slots.default
       for (let i = 0; i < vnodes.length; i++) {
         const vnode = vnodes[i]
-        if (vnode === this.$vnode) return i
+        if (vnode === ctx.vnode) return i
       }
     }
+
+    return {
+      isDisabled,
+      showIcon,
+      handleClick
+    }
   }
-}
+})
 </script>
