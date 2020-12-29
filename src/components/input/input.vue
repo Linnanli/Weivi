@@ -38,7 +38,9 @@
   </div>
 </template>
 <script>
-export default {
+import { computed, defineComponent, ref, toRefs } from '@vue/composition-api'
+
+export default defineComponent({
   name: 'WInput',
   props: {
     suffixIcon: {
@@ -70,45 +72,64 @@ export default {
       default: false
     }
   },
-  data () {
+  setup (props, ctx) {
+    const slot = ctx.slots
+    const {
+      clearable,
+      suffixIcon,
+      prefixIcon
+    } = toRefs(props)
+    const isMouseenter = ref(false)
+
+    const showSuffix = computed(() => clearable || suffixIcon || slot.suffix)
+    const showPrevfix = computed(() => prefixIcon || slot.prefix)
+    const showClearButton = computed(() => clearable && isMouseenter)
+
+    const setInputValue = (value) => {
+      ctx.refs.input.value = value
+    }
+
+    const handleClear = () => {
+      setInputValue('')
+      handleInput()
+    }
+
+    const handleInput = () => {
+      ctx.emit('input', ctx.refs.input.value)
+    }
+
+    const handleMouseenter = () => {
+      isMouseenter.value = true
+    }
+
+    const handleMouseleave = () => {
+      isMouseenter.value = false
+    }
+
+    const handleBlur = (e) => {
+      ctx.emit('blur', e)
+    }
+
+    const handleFocus = (e) => {
+      ctx.emit('focus', e)
+    }
+
     return {
-      isMouseenter: false
-    }
-  },
-  computed: {
-    showSuffix () {
-      return this.clearable || this.suffixIcon || this.$slots.suffix
-    },
-    showPrevfix () {
-      return this.prefixIcon || this.$slots.prefix
-    },
-    showClearButton () {
-      return this.clearable && this.value && this.isMouseenter
-    }
-  },
-  methods: {
-    setInputValue (value) {
-      this.$refs.input.value = value
-    },
-    handleClear () {
-      this.setInputValue('')
-      this.handleInput()
-    },
-    handleInput () {
-      this.$emit('input', this.$refs.input.value)
-    },
-    handleMouseenter () {
-      this.isMouseenter = true
-    },
-    handleMouseleave () {
-      this.isMouseenter = false
-    },
-    handleBlur (event) {
-      this.$emit('blur', event)
-    },
-    handleFocus (event) {
-      this.$emit('focus', event)
+      // data
+      isMouseenter,
+      // computed
+      showSuffix,
+      showPrevfix,
+      showClearButton,
+      // methods
+      setInputValue,
+      handleInput,
+      handleMouseenter,
+      handleMouseleave,
+      handleBlur,
+      handleFocus,
+      handleClear
     }
   }
-}
+})
 </script>
